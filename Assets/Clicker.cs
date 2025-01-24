@@ -57,7 +57,7 @@ public class Clicker : MonoBehaviour
                 Vector3 bubblePosition = bubble.position;
                 float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
                 if(Distance2D <= sprayerRange) {
-                    Destroy(bubble.gameObject);
+                    bubble.gameObject.GetComponent<BubbleScript>().onHit();
                 }
             }
             StartCoroutine(setSprayerCooldown());
@@ -65,25 +65,18 @@ public class Clicker : MonoBehaviour
         } 
     }
 
-    //Debug.Log(Mouse.current.leftButton.wasPressedThisFrame);
     if(mode == 2) {
-            
             int childCount = Bubblecontainer.transform.childCount;
             Sprayer.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
             Sprayer.transform.localScale = new Vector3(bigShotRange, bigShotRange, 1.0f);
-            //Debug.Log(Mouse.current.leftButton.wasPressedThisFrame);
-            //Debug.Log(bigShotCooldown);
             if(Mouse.current.leftButton.wasPressedThisFrame && !bigShotCooldown) {
                 bigShotCooldown = true;
-                Debug.Log("click");
-                Debug.Log(childCount);
                 for(int i = 0; i < childCount; i++) {
                 Transform bubble = Bubblecontainer.transform.GetChild(i);
                 Vector3 bubblePosition = bubble.position;
                 float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
-                Debug.Log(Distance2D);
                 if(Distance2D <= bigShotRange) {
-                    Destroy(bubble.gameObject);
+                    bubble.gameObject.GetComponent<BubbleScript>().onHit();
                 }
             }
             StartCoroutine(setBigShotCooldown());

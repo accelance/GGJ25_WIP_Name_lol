@@ -28,7 +28,6 @@ public class BubbleSpawner : MonoBehaviour
     void Start()
     {
         spawnTimer = spawnDelay;
-        Debug.Log("Test");
         for(int i = 0; i< bubbles.Length; i++){
             bubbles[i] = makeBubble(Instantiate(bubble, this.transform));
         }
@@ -103,22 +102,25 @@ public class BubbleSpawner : MonoBehaviour
         
         for(int i = 0; i< bubbles.Length; i++){
             var b = bubbles[i];
-            if(b.alive) {
-                move(b);
-                if(dangerZone.bounds.Contains(b.o.transform.position)){
-                    leftGameArea(b);
-                }
+            if(b != null) {
+                    if(b.alive) {
+                    move(b);
+                    if(dangerZone.bounds.Contains(b.o.transform.position)){
+                        LoseBar.Instance.bubbleHit();
+                        leftGameArea(b);
+                    }
             } else {
-                if (spawnTimer <= 0) {
-                    spawnTimer = spawnDelay;
-                    // TODO: actual delays
-                    Vector2 p = new(
-                        Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
-                        Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y)
-                    );
+                    if (spawnTimer <= 0) {
+                        spawnTimer = spawnDelay;
+                        // TODO: actual delays
+                        Vector2 p = new(
+                            Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
+                            Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y)
+                        );
 
-                    var kind = (BubbleKind)Random.Range(0, 3);
-                    spawn(bubbles[i], p, kind);
+                        var kind = (BubbleKind)Random.Range(0, 3);
+                        spawn(bubbles[i], p, kind);
+                    }
                 }
             }
         }

@@ -14,6 +14,7 @@ public class BubbleSpawner : MonoBehaviour
         public GameObject o;
         public float speedOffset; 
 
+        // TODO: add a method void onMouseDown()
         public SpriteRenderer Sprite() {
             return o.GetComponent<SpriteRenderer>();
         }
@@ -29,7 +30,7 @@ public class BubbleSpawner : MonoBehaviour
         spawnTimer = spawnDelay;
         Debug.Log("Test");
         for(int i = 0; i< bubbles.Length; i++){
-            bubbles[i] = makeBubble(Instantiate(bubble, this.transform), BubbleKind.Normal);
+            bubbles[i] = makeBubble(Instantiate(bubble, this.transform));
         }
     }
 
@@ -37,19 +38,35 @@ public class BubbleSpawner : MonoBehaviour
     float spawnTimer;
     // Update is called once per frame
 
-    Bubble makeBubble(GameObject o, BubbleKind kind) {
+    Bubble makeBubble(GameObject o) {
         var it = new Bubble();
         it.o = o;
-        it.kind = kind;
-        // TODO: scale, per kind
-        // TODO: expose, per kind
-        it.speedOffset = Random.Range(0.9f, 1.1f);
-        it.Sprite().color = Random.ColorHSV();
         return it;
     }
 
-    void spawn(Bubble it, Vector3 position, float scale = 1.0f) {
+    void spawn(Bubble it, Vector3 position, BubbleKind kind) {
         it.alive = true;
+
+        it.kind = kind;
+
+        float scale = Random.Range(0.1f, 1f);
+        // TODO: scale, per kind
+        // TODO: expose, per kind
+        it.speedOffset = Random.Range(0.9f, 1.1f);
+        switch(it.kind) {
+            case BubbleKind.Normal: 
+                it.Sprite().color = Color.white; 
+                break;
+            case BubbleKind.Mini: 
+                it.Sprite().color = Color.blue; 
+                break;
+            case BubbleKind.Tank: 
+                it.Sprite().color = Color.red; 
+                break;
+            default:
+                Debug.Log("ERROR: Invalid switch case ");
+                break;
+        }
 
         it.o.transform.position = position;
         it.o.transform.localScale = new(scale, scale, 0);
@@ -87,7 +104,6 @@ public class BubbleSpawner : MonoBehaviour
         for(int i = 0; i< bubbles.Length; i++){
             var b = bubbles[i];
             if(b.alive) {
-                // TODO: speed per bubble, also random
                 move(b);
                 if(dangerZone.bounds.Contains(b.o.transform.position)){
                     leftGameArea(b);
@@ -100,7 +116,9 @@ public class BubbleSpawner : MonoBehaviour
                         Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
                         Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y)
                     );
-                    spawn(bubbles[i], p, Random.Range(0.1f, 1f));
+
+                    var kind = (BubbleKind)Random.Range(0, 3);
+                    spawn(bubbles[i], p, kind);
                 }
             }
         }

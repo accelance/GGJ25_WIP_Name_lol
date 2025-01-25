@@ -9,6 +9,8 @@ public class BubbleSpawner : MonoBehaviour
     public BoxCollider2D spawnArea;
     public BoxCollider2D dangerZone;
 
+    public Material material;
+
     public MonoBehaviour bubbleScript;
     //TODO: per kind in template
     public float spawnsPerSecond = 3f;
@@ -21,7 +23,7 @@ public class BubbleSpawner : MonoBehaviour
         {
             var o = new GameObject("Bubble");
             o.transform.parent = this.transform;
-            bubbles[i] = new Bubble(o);
+            bubbles[i] = new Bubble(o, material);
         }
     }
 
@@ -172,6 +174,7 @@ public class BubbleSpawner : MonoBehaviour
         it.state = BubbleState.Alive;
 
         it.template = template;
+
 
         it.p = position;
 

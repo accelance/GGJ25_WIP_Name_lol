@@ -77,7 +77,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _Glossiness: 0.548
-    - _HueShift: 300
+    - _HueShift: 80
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0

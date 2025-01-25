@@ -1,0 +1,442 @@
+fileFormatVersion: 2
+guid: af43a5fe5ae1318ffa3728840c2349dc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7162386252392397585
+    second: fu_0001_Unbenanntes_Projekt-4_0
+  - first:
+      213: -7748790333849750583
+    second: fu_0001_Unbenanntes_Projekt-4_1
+  - first:
+      213: 7316283760070056437
+    second: fu_0001_Unbenanntes_Projekt-4_2
+  - first:
+      213: 3189257429486939447
+    second: fu_0001_Unbenanntes_Projekt-4_3
+  - first:
+      213: 8120530557099564977
+    second: fu_0001_Unbenanntes_Projekt-4_4
+  - first:
+      213: 5715063595480761208
+    second: fu_0001_Unbenanntes_Projekt-4_5
+  - first:
+      213: 3738389216197272126
+    second: fu_0001_Unbenanntes_Projekt-4_6
+  - first:
+      213: -3520901894494722132
+    second: fu_0001_Unbenanntes_Projekt-4_7
+  - first:
+      213: 1619701996205598964
+    second: fu_0001_Unbenanntes_Projekt-4_8
+  - first:
+      213: -7134633422826190197
+    second: fu_0001_Unbenanntes_Projekt-4_9
+  - first:
+      213: -6441924602356692114
+    second: fu_0001_Unbenanntes_Projekt-4_10
+  - first:
+      213: 6297118810118933503
+    second: fu_0001_Unbenanntes_Projekt-4_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_0
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 258
+        width: 55
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11b7dfd3958e56360800000000000000
+      internalID: 7162386252392397585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_1
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 170
+        width: 42
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c3b7e70f34c67490800000000000000
+      internalID: -7748790333849750583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_2
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 293
+        width: 29
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f95fe20159a88560800000000000000
+      internalID: 7316283760070056437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_3
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 250
+        width: 30
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d28d51cb4824c20800000000000000
+      internalID: 3189257429486939447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_4
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 231
+        width: 46
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bfdf9b648be1b070800000000000000
+      internalID: 8120530557099564977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_5
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 225
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 873c5657f0cff4f40800000000000000
+      internalID: 5715063595480761208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_6
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 161
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e32e69f6f2d61e330800000000000000
+      internalID: 3738389216197272126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_7
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 172
+        width: 42
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca764a9a16e332fc0800000000000000
+      internalID: -3520901894494722132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_8
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 22
+        width: 284
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f863dd42665a7610800000000000000
+      internalID: 1619701996205598964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_9
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 119
+        width: 31
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8ac0dde3b0bcfc90800000000000000
+      internalID: -7134633422826190197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62
+        width: 107
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6b0ea674bfa996a0800000000000000
+      internalID: -6441924602356692114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fu_0001_Unbenanntes_Projekt-4_11
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 0
+        width: 255
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffbc199b13cd36750800000000000000
+      internalID: 6297118810118933503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      fu_0001_Unbenanntes_Projekt-4_0: 7162386252392397585
+      fu_0001_Unbenanntes_Projekt-4_1: -7748790333849750583
+      fu_0001_Unbenanntes_Projekt-4_10: -6441924602356692114
+      fu_0001_Unbenanntes_Projekt-4_11: 6297118810118933503
+      fu_0001_Unbenanntes_Projekt-4_2: 7316283760070056437
+      fu_0001_Unbenanntes_Projekt-4_3: 3189257429486939447
+      fu_0001_Unbenanntes_Projekt-4_4: 8120530557099564977
+      fu_0001_Unbenanntes_Projekt-4_5: 5715063595480761208
+      fu_0001_Unbenanntes_Projekt-4_6: 3738389216197272126
+      fu_0001_Unbenanntes_Projekt-4_7: -3520901894494722132
+      fu_0001_Unbenanntes_Projekt-4_8: 1619701996205598964
+      fu_0001_Unbenanntes_Projekt-4_9: -7134633422826190197
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

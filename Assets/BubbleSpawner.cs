@@ -18,6 +18,9 @@ public class BubbleSpawner : MonoBehaviour
     public BubbleRule[] bubbleRules;
     public int ruleCursor;
 
+
+    public Material material;
+
     public float spawnsPerSecond = 3f;
     float spawnTimer;
 
@@ -28,7 +31,7 @@ public class BubbleSpawner : MonoBehaviour
         {
             var o = new GameObject("Bubble");
             o.transform.parent = this.transform;
-            bubbles[i] = new Bubble(o);
+            bubbles[i] = new Bubble(o, material);
         }
     }
 

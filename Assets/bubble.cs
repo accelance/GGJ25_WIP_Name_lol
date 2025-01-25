@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Bubble
 {
@@ -62,10 +63,13 @@ public class Bubble
         }
     }
 
-    public Bubble(GameObject o)
+    public Bubble(GameObject o, Material material)
     {
+        List<Material> l = new List<Material>();
+        l.Add(material);
         this.o = o;
-        o.AddComponent<SpriteRenderer>();
+        SpriteRenderer sr = o.AddComponent<SpriteRenderer>();
+        sr.SetMaterials(l);
         o.AddComponent<Bubbles>();
         o.AddComponent<CircleCollider2D>();
         // var rb = o.AddComponent<Rigidbody2D>();

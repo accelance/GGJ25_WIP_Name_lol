@@ -9,11 +9,6 @@ public class BubbleTemplate
     public float speedVariance;
     public float averageSize;
     public float sizeVariance;
-    [SerializeField]
-    public Sprite[] idle  = new Sprite[3];
-    [SerializeField]
-    public Sprite[] death = new Sprite[3];
-
     public BubbleTemplate(BubbleKind kind, int maxHP, float averageSpeed, float speedVariance, float averageSize, float sizeVariance)
     {
         this.kind = kind;

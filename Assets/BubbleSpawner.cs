@@ -3,14 +3,17 @@ using System.Collections;
 
 public class BubbleSpawner : MonoBehaviour
 {
+    
+    [SerializeField]
+    public Sprite[] idle  = new Sprite[3];
+    [SerializeField]
+    public Sprite[] death = new Sprite[5];
     [SerializeField]
     public BubbleTemplate[] templates = new BubbleTemplate[3];
     public Bubble[] bubbles = new Bubble[64];
     public BoxCollider2D spawnArea;
     public BoxCollider2D dangerZone;
 
-    public MonoBehaviour bubbleScript;
-    //TODO: per kind in template
     public float spawnsPerSecond = 3f;
     float spawnTimer;
 
@@ -39,7 +42,7 @@ public class BubbleSpawner : MonoBehaviour
             }
             else
             {
-                it.sprite = it.template.death[0];
+                it.sprite = death[it.template.maxHP - it.hp];
 
                 it.state = BubbleState.Invincible;
                 it.desiredScale = it.currentScale * 0.5f;
@@ -71,11 +74,9 @@ public class BubbleSpawner : MonoBehaviour
                     if (it.idleIndex % 16 == 0)
                     {
                         it.animationIndex = (it.animationIndex + 1) % 3;
-                        it.sprite = it.template.idle[it.animationIndex];
+                        it.sprite = idle[it.animationIndex];
                     }
                 }
-
-
 
 
                 if (it.tscale < 1)
@@ -159,12 +160,11 @@ public class BubbleSpawner : MonoBehaviour
 
     public IEnumerator popBubble(Bubble it)
     {
-        var frames = it.template.death;
-        it.sprite = frames[frames.Length - 2];
+        it.sprite = death[death.Length - 2];
         yield return new WaitForSeconds(0.16f);
-        it.sprite = frames[frames.Length - 1];
+        it.sprite = death[death.Length - 1];
         yield return new WaitForSeconds(0.16f);
-        it.o.SetActive(false);
+        despawn(it);
     }
 
     void spawn(Bubble it, Vector3 position, BubbleTemplate template)
@@ -224,6 +224,7 @@ public class BubbleSpawner : MonoBehaviour
 
         it.p += it.ddp * 0.5f * timeSquared + it.dp * Time.deltaTime;
         it.o.transform.position = it.p;
+        Debug.DrawRay(it.p, it.dp);
         // var rb = it.o.GetComponent<Rigidbody2D>();
         // rb.MovePosition(it.p);
     }

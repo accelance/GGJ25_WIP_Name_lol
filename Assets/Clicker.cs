@@ -28,6 +28,10 @@ public class Clicker : MonoBehaviour
     public GameObject sprayAvailableIndicator;
 
     public GameObject sprayParticleSource;
+
+    public Sprite[] PawAnimation;
+    public GameObject Paw;
+    SpriteRenderer PawRenderer;
     SpriteRenderer sprayAvailableIndicatorSprite;
 
     public GameObject bearAvailableIndicator;
@@ -55,6 +59,7 @@ public class Clicker : MonoBehaviour
 
         sprayerRenderer.enabled = false;
         sprayParticleSource.SetActive(false);
+        PawRenderer = Paw.GetComponent<SpriteRenderer>();
     }
 
    void Update()
@@ -96,7 +101,7 @@ public class Clicker : MonoBehaviour
             if(Mouse.current.leftButton.wasPressedThisFrame && !bigShotCooldown) {
                 int childCount = Bubblecontainer.transform.childCount;
                 Sprayer.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
-                Sprayer.transform.localScale = new Vector3(bigShotRange * 2, bigShotRange * 2, 1.0f);
+                Sprayer.transform.localScale = new Vector3(bigShotRange / 4, bigShotRange / 4, 1.0f);
                 sprayerRenderer.enabled = true;
                 bigShotCooldown = true;
                 for(int i = 0; i < childCount; i++) {
@@ -152,7 +157,12 @@ public class Clicker : MonoBehaviour
     }
 
     IEnumerator pawDuration() {
-        yield return new WaitForSeconds(0.5f);
+        PawRenderer.sprite = PawAnimation[0];
+        yield return new WaitForSeconds(0.16f);
+        PawRenderer.sprite = PawAnimation[1];
+        yield return new WaitForSeconds(0.16f);
+        PawRenderer.sprite = PawAnimation[2];
+        yield return new WaitForSeconds(0.16f);
         Debug.Log("disable");
         sprayerRenderer.enabled = false;
 

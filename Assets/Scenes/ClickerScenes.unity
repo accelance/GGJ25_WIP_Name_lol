@@ -326,6 +326,11 @@ MonoBehaviour:
   Sprayer: {fileID: 361587916}
   sprayAvailableIndicator: {fileID: 173150843}
   sprayParticleSource: {fileID: 599974716}
+  PawAnimation:
+  - {fileID: 21300000, guid: c51b016dc94d37fe3a1557dab5810bf0, type: 3}
+  - {fileID: 21300000, guid: ee0ffe9f72d13b1ad84b6e77d235ef05, type: 3}
+  - {fileID: 21300000, guid: aef7fa9c206e43ff2ae20f75a468d0b4, type: 3}
+  Paw: {fileID: 361587916}
   bearAvailableIndicator: {fileID: 99518170}
   waffe: 1
 --- !u!4 &233398314
@@ -425,7 +430,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.8777885, y: 0.40001488, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

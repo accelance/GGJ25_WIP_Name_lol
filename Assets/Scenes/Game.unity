@@ -256,6 +256,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727f5688c506370018e8df9c83dd7579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &82781722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 82781723}
+  - component: {fileID: 82781724}
+  m_Layer: 0
+  m_Name: Cauldron
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &82781723
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82781722}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5799999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1944014157}
+  - {fileID: 1226261653}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &82781724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82781722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5748a6ac18c15469cb4bc93dcf7983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSpawnerIndex: 0
 --- !u!1 &266135220
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,6 +1009,181 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &1226261652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226261653}
+  - component: {fileID: 1226261656}
+  - component: {fileID: 1226261655}
+  - component: {fileID: 1226261654}
+  m_Layer: 0
+  m_Name: BubbleSpawner Mini
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226261653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226261652}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82781723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1226261654
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226261652}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 9.66}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 24.68, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &1226261655
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226261652}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 8, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &1226261656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226261652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f40405774da3254c808ea628d917340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idle:
+  - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
+  - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
+  - {fileID: 21300000, guid: 18c0b060b3d086ff8a4f7aba4e793fc8, type: 3}
+  death:
+  - {fileID: 21300000, guid: 2cb12e9739a5b99a19c74cce0cc23db9, type: 3}
+  - {fileID: 21300000, guid: b44d938ba87b51d7899e252d4ed0f0f0, type: 3}
+  - {fileID: 21300000, guid: 174f8331b5543cfd981f46888ce367c6, type: 3}
+  - {fileID: 21300000, guid: 5e74da539ccc15245b7fb48056005fc4, type: 3}
+  - {fileID: 21300000, guid: 9ea64878f9eff78859bcc0c2514aad19, type: 3}
+  templates:
+  - kind: 0
+    maxHP: 1
+    averageSpeed: 1
+    speedVariance: 0.2
+    averageSize: 0.5
+    sizeVariance: 0.1
+  - kind: 1
+    maxHP: 3
+    averageSpeed: 0.5
+    speedVariance: 0.1
+    averageSize: 1.2
+    sizeVariance: 0.1
+  - kind: 2
+    maxHP: 1
+    averageSpeed: 2
+    speedVariance: 0.4
+    averageSize: 0.3
+    sizeVariance: 0.05
+  spawnArea: {fileID: 1226261655}
+  dangerZone: {fileID: 1226261654}
+  bubbleRules:
+  - kind: 2
+    count: 1
+    index: 0
+  ruleCursor: 0
+  spawnsPerSecond: 2
 --- !u!1 &1380093457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1360,7 @@ GameObject:
   - component: {fileID: 1944014158}
   - component: {fileID: 1944014159}
   m_Layer: 0
-  m_Name: BubbleSpawner
+  m_Name: BubbleSpawner Tank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1187,7 +1409,10 @@ MonoBehaviour:
     sizeVariance: 0.05
   spawnArea: {fileID: 1944014158}
   dangerZone: {fileID: 1944014159}
-  bubbleRules: []
+  bubbleRules:
+  - kind: 1
+    count: 1
+    index: 0
   ruleCursor: 0
   spawnsPerSecond: 2
 --- !u!4 &1944014157
@@ -1198,12 +1423,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944014154}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 82781723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1944014158
 BoxCollider2D:
@@ -1469,7 +1694,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1044529884}
-  - {fileID: 1944014157}
+  - {fileID: 82781723}
   - {fileID: 627019583}
   - {fileID: 1380093459}
   - {fileID: 729692466}

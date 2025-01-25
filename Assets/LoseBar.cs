@@ -9,7 +9,7 @@ public class LoseBar : MonoBehaviour
 
     Image image;
 
-    int maxBubbles = 20;
+    int maxBubbles = 100;
     int currentlyHitBubbles = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

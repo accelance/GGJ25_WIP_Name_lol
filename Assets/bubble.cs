@@ -3,8 +3,7 @@ using UnityEngine;
 public class Bubble
 {
     // TODO just store the template
-    public Color color;
-    public BubbleKind kind;
+    public BubbleTemplate template;
     private Sprite _sprite;
 
 
@@ -20,6 +19,13 @@ public class Bubble
     public float[] swayFactors = new float[3];
     public float[] swayStrengths = new float[3];
 
+
+
+    public int idleIndex = 0;
+    public int animationIndex = 0;
+
+
+
     public int hp;
     //TODO: maybe by template
     public float currentScale;
@@ -27,24 +33,32 @@ public class Bubble
     public float tscale;
     public float tinvicible;
     public Color _currentColor;
-    public Color currentColor {
-        get {
+    public Color currentColor
+    {
+        get
+        {
             return _currentColor;
         }
-        set {
+        set
+        {
             _currentColor = value;
             var sr = o.GetComponent<SpriteRenderer>();
             sr.color = value;
         }
     }
-    public Sprite sprite {
-        get {
+    public Sprite sprite
+    {
+        get
+        {
             return _sprite;
         }
-        set {
+        set
+        {
             _sprite = value;
             var sr = o.GetComponent<SpriteRenderer>();
             sr.sprite = value;
+            var collider = o.GetComponent<CircleCollider2D>();
+            collider.radius = sr.sprite.bounds.extents.x;
         }
     }
 
@@ -52,8 +66,9 @@ public class Bubble
     {
         this.o = o;
         o.AddComponent<SpriteRenderer>();
+        o.AddComponent<Bubbles>();
+        o.AddComponent<CircleCollider2D>();
         // var rb = o.AddComponent<Rigidbody2D>();
-        // o.AddComponent<CircleCollider2D>();
         // rb.gravityScale = 0;
     }
 }

@@ -1,32 +1,8 @@
 using UnityEngine;
+using System.Collections;
 
 public class BubbleSpawner : MonoBehaviour
 {
-    [System.Serializable]
-    public class BubbleTemplate
-    {
-        public BubbleKind kind;
-        public int maxHP;
-        public float averageSpeed;
-        public float speedVariance;
-        public float averageSize;
-        public float sizeVariance;
-        [SerializeField]
-        public Sprite[] idle  = new Sprite[3];
-        [SerializeField]
-        public Sprite[] death = new Sprite[3];
-
-        public BubbleTemplate(BubbleKind kind, int maxHP, float averageSpeed, float speedVariance, float averageSize, float sizeVariance)
-        {
-            this.kind = kind;
-            this.averageSpeed = averageSpeed;
-            this.speedVariance = speedVariance;
-            this.averageSize = averageSize;
-            this.sizeVariance = sizeVariance;
-            this.maxHP = maxHP;
-        }
-    }
-
     [SerializeField]
     public BubbleTemplate[] templates = new BubbleTemplate[3];
     public Bubble[] bubbles = new Bubble[64];
@@ -57,11 +33,14 @@ public class BubbleSpawner : MonoBehaviour
             it.hp -= 1;
             if (it.hp == 0)
             {
+                StartCoroutine(popBubble(it));
                 it.desiredScale = 0.1f;
                 it.state = BubbleState.Popped;
             }
             else
             {
+                it.sprite = it.template.death[0];
+
                 it.state = BubbleState.Invincible;
                 it.desiredScale = it.currentScale * 0.5f;
                 it.tinvicible = 0.4f; // TODO expose
@@ -87,6 +66,18 @@ public class BubbleSpawner : MonoBehaviour
             {
                 it.age += Time.deltaTime;
 
+                if (it.state == BubbleState.Alive) {
+                    it.idleIndex++;
+                    if (it.idleIndex % 16 == 0)
+                    {
+                        it.animationIndex = (it.animationIndex + 1) % 3;
+                        it.sprite = it.template.idle[it.animationIndex];
+                    }
+                }
+
+
+
+
                 if (it.tscale < 1)
                 {
                     it.tscale += Time.deltaTime;
@@ -98,6 +89,9 @@ public class BubbleSpawner : MonoBehaviour
                     it.currentScale = it.desiredScale;
                     it.tscale = 0;
                 }
+                
+                var collider = it.o.GetComponent<CircleCollider2D>();
+                
 
                 switch (it.state)
                 {
@@ -119,7 +113,7 @@ public class BubbleSpawner : MonoBehaviour
                         move(it);
                         if (dangerZone.bounds.Contains(it.o.transform.position))
                         {
-                            // LoseBar.Instance.bubbleHit();
+                            LoseBar.Instance.bubbleHit();
                             despawn(it);
                         }
                         break;
@@ -130,16 +124,17 @@ public class BubbleSpawner : MonoBehaviour
                         {
                             float t = (Mathf.Sin(it.tinvicible * 20f) + 1) * 0.5f;
                             t = t * t;
-                            it.currentColor = Color.Lerp(it.color, Color.white, t);
+                            it.currentColor = Color.Lerp(new Vector4(1,1,1, 0.5f), Color.white, t);
                         }
                         else
                         {
                             it.state = BubbleState.Alive;
-                            it.currentColor = it.color;
+                            it.currentColor = Color.white;
                         }
                         break;
                     case BubbleState.Popped:
                         move(it);
+
                         if (it.desiredScale == it.currentScale)
                         {
                             foreach(var other in bubbles) {
@@ -162,16 +157,21 @@ public class BubbleSpawner : MonoBehaviour
         }
     }
 
+    public IEnumerator popBubble(Bubble it)
+    {
+        var frames = it.template.death;
+        it.sprite = frames[frames.Length - 2];
+        yield return new WaitForSeconds(0.16f);
+        it.sprite = frames[frames.Length - 1];
+        yield return new WaitForSeconds(0.16f);
+        it.o.SetActive(false);
+    }
 
     void spawn(Bubble it, Vector3 position, BubbleTemplate template)
     {
         it.state = BubbleState.Alive;
 
-        it.sprite = template.sprite;
-        it.color = template.color;
-        it.currentColor = template.color;
-
-        it.kind = template.kind;
+        it.template = template;
 
         it.p = position;
 

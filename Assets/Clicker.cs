@@ -67,14 +67,14 @@ public class Clicker : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey("e") && sprayerAvailable)
+        if (Input.GetKey("e") /* && sprayerAvailable */)
         {
             waffe = Waffe.Snake;
             sprayParticleSource.SetActive(true);
             StartCoroutine(sprayDuration());
         }
 
-        if (Input.GetKey("r") && bearAvailable)
+        if (Input.GetKey("r") /* && bearAvailable */)
         {
             waffe = Waffe.Bear;
             StartCoroutine(bearDuration());
@@ -110,9 +110,9 @@ public class Clicker : MonoBehaviour
             if (Mouse.current.leftButton.wasPressedThisFrame && !bigShotCooldown)
             {
                 int childCount = Bubblecontainer.transform.childCount;
-                Sprayer.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
-                Sprayer.transform.localScale = new Vector3(bigShotRange / 4, bigShotRange / 4, 1.0f);
-                sprayerRenderer.enabled = true;
+                Paw.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
+                Paw.transform.localScale = new Vector3(bigShotRange / 4, bigShotRange / 4, 1.0f);
+                PawRenderer.enabled = true;
                 bigShotCooldown = true;
                 for (int i = 0; i < childCount; i++)
                 {
@@ -121,7 +121,7 @@ public class Clicker : MonoBehaviour
                     float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
                     if (Distance2D <= bigShotRange && bubble.gameObject.activeSelf)
                     {
-                        bubble.gameObject.GetComponent<BubbleSpawner>().onHit(i);
+                        bubble.gameObject.transform.parent.GetComponent<BubbleSpawner>().onHit(i);
                     }
                     StartCoroutine(pawDuration());
                     StartCoroutine(setBigShotCooldown());
@@ -183,7 +183,7 @@ public class Clicker : MonoBehaviour
         PawRenderer.sprite = PawAnimation[2];
         yield return new WaitForSeconds(0.16f);
         Debug.Log("disable");
-        sprayerRenderer.enabled = false;
+        PawRenderer.enabled = false;
 
     }  
    

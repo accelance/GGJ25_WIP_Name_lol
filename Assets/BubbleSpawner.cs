@@ -13,6 +13,9 @@ public class BubbleSpawner : MonoBehaviour
     public Bubble[] bubbles = new Bubble[64];
     public BoxCollider2D spawnArea;
     public BoxCollider2D dangerZone;
+    [SerializeField]
+    public BubbleRule[] bubbleRules;
+    public int ruleCursor;
 
     public float spawnsPerSecond = 3f;
     float spawnTimer;
@@ -100,13 +103,27 @@ public class BubbleSpawner : MonoBehaviour
                         if (spawnTimer <= 0)
                         {
                             spawnTimer = 1 / spawnsPerSecond;
-                            // TODO: actual delays
+
                             Vector2 p = new(
                                 Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
                                 Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y)
                             );
 
-                            var kind = (BubbleKind)Random.Range(0, 3);
+                            var kind = BubbleKind.Normal;
+
+                            if (bubbleRules.Length > 0) {
+                                var everyXBubblesIsA = bubbleRules[ruleCursor];
+                                everyXBubblesIsA.index--;
+                                if (everyXBubblesIsA.index <= 0) {
+                                    everyXBubblesIsA.index = everyXBubblesIsA.count;
+                                    kind = everyXBubblesIsA.kind;
+                                    ruleCursor++;
+                                    if (ruleCursor>= bubbleRules.Length) {
+                                        ruleCursor = 0;
+                                    }
+                                }
+                            }
+                            
                             spawn(bubbles[i], p, getTemplate(kind));
                         }
                         break;
@@ -169,6 +186,7 @@ public class BubbleSpawner : MonoBehaviour
 
     void spawn(Bubble it, Vector3 position, BubbleTemplate template)
     {
+        Debug.Log(template.kind);
         it.state = BubbleState.Alive;
 
         it.template = template;

@@ -1156,6 +1156,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f40405774da3254c808ea628d917340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idle:
+  - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
+  - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
+  - {fileID: 21300000, guid: 18c0b060b3d086ff8a4f7aba4e793fc8, type: 3}
+  death:
+  - {fileID: 21300000, guid: 2cb12e9739a5b99a19c74cce0cc23db9, type: 3}
+  - {fileID: 21300000, guid: b44d938ba87b51d7899e252d4ed0f0f0, type: 3}
+  - {fileID: 21300000, guid: 174f8331b5543cfd981f46888ce367c6, type: 3}
+  - {fileID: 21300000, guid: 5e74da539ccc15245b7fb48056005fc4, type: 3}
+  - {fileID: 21300000, guid: 9ea64878f9eff78859bcc0c2514aad19, type: 3}
   templates:
   - kind: 0
     maxHP: 1
@@ -1163,47 +1173,22 @@ MonoBehaviour:
     speedVariance: 0.2
     averageSize: 0.5
     sizeVariance: 0.1
-    idle:
-    - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
-    - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
-    - {fileID: 21300000, guid: 18c0b060b3d086ff8a4f7aba4e793fc8, type: 3}
-    death:
-    - {fileID: 6599960886976758232, guid: 5f3c2ee0b6bdfb7128031a93d2cc069e, type: 3}
-    - {fileID: 21300000, guid: b9e947dbb5d59cb89a4f0522f26c714a, type: 3}
-    - {fileID: 21300000, guid: 88fd8dc2137d230a38092bd3b7f2ab75, type: 3}
   - kind: 1
     maxHP: 3
     averageSpeed: 0.5
     speedVariance: 0.1
     averageSize: 1.2
     sizeVariance: 0.1
-    idle:
-    - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
-    - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
-    - {fileID: 21300000, guid: 18c0b060b3d086ff8a4f7aba4e793fc8, type: 3}
-    death:
-    - {fileID: 21300000, guid: 2cb12e9739a5b99a19c74cce0cc23db9, type: 3}
-    - {fileID: 21300000, guid: b44d938ba87b51d7899e252d4ed0f0f0, type: 3}
-    - {fileID: 21300000, guid: 174f8331b5543cfd981f46888ce367c6, type: 3}
-    - {fileID: 21300000, guid: 5e74da539ccc15245b7fb48056005fc4, type: 3}
-    - {fileID: 21300000, guid: 9ea64878f9eff78859bcc0c2514aad19, type: 3}
   - kind: 2
     maxHP: 1
     averageSpeed: 2
     speedVariance: 0.4
     averageSize: 0.3
     sizeVariance: 0.05
-    idle:
-    - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
-    - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
-    - {fileID: 21300000, guid: 18c0b060b3d086ff8a4f7aba4e793fc8, type: 3}
-    death:
-    - {fileID: 21300000, guid: 0741e8dbf15ac6c7781ee39d1726203c, type: 3}
-    - {fileID: 21300000, guid: b9e947dbb5d59cb89a4f0522f26c714a, type: 3}
-    - {fileID: 21300000, guid: 88fd8dc2137d230a38092bd3b7f2ab75, type: 3}
   spawnArea: {fileID: 1944014158}
   dangerZone: {fileID: 1944014159}
-  bubbleScript: {fileID: 0}
+  bubbleRules: []
+  ruleCursor: 0
   spawnsPerSecond: 2
 --- !u!4 &1944014157
 Transform:
@@ -1310,7 +1295,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 16, y: 1}
+  m_Size: {x: 24.68, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &1998950850
 GameObject:

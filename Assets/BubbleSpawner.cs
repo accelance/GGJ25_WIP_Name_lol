@@ -5,6 +5,8 @@ public class BubbleSpawner : MonoBehaviour
 {
     
     [SerializeField]
+    public Sprite[] bear  = new Sprite[3];
+    public Sprite[] snake  = new Sprite[3];
     public Sprite[] idle  = new Sprite[3];
     [SerializeField]
     public Sprite[] death = new Sprite[5];
@@ -16,7 +18,9 @@ public class BubbleSpawner : MonoBehaviour
     [SerializeField]
     public BubbleKind baseKind;
     public BubbleRule[] bubbleRules;
-    public int ruleCursor;
+    public BubbleRule[] bonusBubbles;
+    int ruleCursor;
+    int bonusRuleCursor;
 
 
     public Material material;
@@ -46,6 +50,16 @@ public class BubbleSpawner : MonoBehaviour
                 StartCoroutine(popBubble(it));
                 it.desiredScale = 0.1f;
                 it.state = BubbleState.Popped;
+
+                switch(it.bonus) {
+                    case Clicker.Waffe.Normal:
+                        break;
+                    case Clicker.Waffe.Bear:
+                    case Clicker.Waffe.Snake:
+                        Clicker.Instance.getUpgradeAvailable(it.bonus);
+                        break;
+                    
+                }
             }
             else
             {
@@ -80,8 +94,19 @@ public class BubbleSpawner : MonoBehaviour
                     it.idleIndex++;
                     if (it.idleIndex % 16 == 0)
                     {
-                        it.animationIndex = (it.animationIndex + 1) % 3;
-                        it.sprite = idle[it.animationIndex];
+                        // TODO: fix this
+                        it.animationIndex = (it.animationIndex+1) % 3;
+                        switch(it.bonus) {
+                            case Clicker.Waffe.Normal:
+                                it.sprite = idle[it.animationIndex];
+                                break;
+                            case Clicker.Waffe.Bear:
+                                it.sprite = bear[it.animationIndex];
+                                break;
+                            case Clicker.Waffe.Snake:
+                                it.sprite = snake[it.animationIndex];
+                                break;
+                        }
                     }
                 }
 
@@ -114,21 +139,38 @@ public class BubbleSpawner : MonoBehaviour
                             );
 
                             var kind = BubbleKind.Normal;
-
+                            Clicker.Waffe bonus = Clicker.Waffe.Normal;
+                            bool overwritten = false;
                             if (bubbleRules.Length > 0) {
                                 var everyXBubblesIsA = bubbleRules[ruleCursor];
                                 everyXBubblesIsA.index--;
                                 if (everyXBubblesIsA.index <= 0) {
                                     everyXBubblesIsA.index = everyXBubblesIsA.count;
                                     kind = everyXBubblesIsA.kind;
+                                    overwritten = true;
                                     ruleCursor++;
                                     if (ruleCursor>= bubbleRules.Length) {
                                         ruleCursor = 0;
                                     }
                                 }
                             }
+
+                            if (!overwritten && bonusBubbles.Length > 0) {
+                                var everyXBubblesIsA = bonusBubbles[bonusRuleCursor];
+                                everyXBubblesIsA.index--;
+                                if (everyXBubblesIsA.index <= 0) {
+                                    everyXBubblesIsA.index = everyXBubblesIsA.count;
+                                    kind = everyXBubblesIsA.kind;
+                                    bonus = everyXBubblesIsA.bonus;
+                                    overwritten = true;
+                                    bonusRuleCursor++;
+                                    if (bonusRuleCursor>= bonusBubbles.Length) {
+                                        bonusRuleCursor = 0;
+                                    }
+                                }
+                            }
                             
-                            spawn(bubbles[i], p, getTemplate(kind));
+                            spawn(bubbles[i], p, getTemplate(kind), bonus);
                         }
                         break;
                     case BubbleState.Alive:
@@ -188,11 +230,13 @@ public class BubbleSpawner : MonoBehaviour
         despawn(it);
     }
 
-    void spawn(Bubble it, Vector3 position, BubbleTemplate template)
+    void spawn(Bubble it, Vector3 position, BubbleTemplate template, Clicker.Waffe bonus)
     {
         it.state = BubbleState.Alive;
 
         it.template = template;
+
+        it.bonus = bonus;
 
 
         for(int octave = 0; octave < it.swayFactors.Length; octave++) {

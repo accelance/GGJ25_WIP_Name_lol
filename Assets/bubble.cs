@@ -8,6 +8,8 @@ public class Bubble
     private Sprite _sprite;
 
 
+    public Clicker.Waffe bonus;
+
     public BubbleState state;
     public GameObject o;
 

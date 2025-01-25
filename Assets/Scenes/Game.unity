@@ -129,8 +129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 25477849}
   - component: {fileID: 25477848}
-  - component: {fileID: 25477850}
   - component: {fileID: 25477851}
+  - component: {fileID: 25477852}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Untagged
@@ -208,19 +208,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &25477850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25477847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8beb2eb636916adf6be6e6ef6ead6ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 3
 --- !u!58 &25477851
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -257,6 +244,29 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &25477852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25477847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 727f5688c506370018e8df9c83dd7579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAnimation:
+  - {fileID: 21300000, guid: 18c0b060b3d086ff8a4f7aba4e793fc8, type: 3}
+  - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
+  - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
+  frames:
+  - {fileID: 21300000, guid: 0741e8dbf15ac6c7781ee39d1726203c, type: 3}
+  - {fileID: 21300000, guid: b9e947dbb5d59cb89a4f0522f26c714a, type: 3}
+  - {fileID: 21300000, guid: 88fd8dc2137d230a38092bd3b7f2ab75, type: 3}
+  spriteRenderer: {fileID: 0}
+  collider: {fileID: 0}
+  idle: 1
 --- !u!1 &266135220
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +441,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &576335547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 576335548}
+  m_Layer: 0
+  m_Name: PartcicleEmpty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &576335548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576335547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6388206, y: -0.2710786, z: -0.062308207}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &601402180
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,6 +918,12 @@ MonoBehaviour:
   Bubblecontainer: {fileID: 1944014154}
   Sprayer: {fileID: 266135220}
   sprayAvailableIndicator: {fileID: 500448403}
+  sprayParticleSource: {fileID: 576335547}
+  PawAnimation:
+  - {fileID: 21300000, guid: c51b016dc94d37fe3a1557dab5810bf0, type: 3}
+  - {fileID: 21300000, guid: ee0ffe9f72d13b1ad84b6e77d235ef05, type: 3}
+  - {fileID: 21300000, guid: aef7fa9c206e43ff2ae20f75a468d0b4, type: 3}
+  Paw: {fileID: 266135220}
   bearAvailableIndicator: {fileID: 601402180}
   waffe: 0
 --- !u!4 &1380093459
@@ -1347,3 +1394,5 @@ SceneRoots:
   - {fileID: 2085426033}
   - {fileID: 1792715445}
   - {fileID: 266135222}
+  - {fileID: 25477849}
+  - {fileID: 576335548}

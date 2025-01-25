@@ -5,19 +5,19 @@ using System.Collections;
 public class Clicker : MonoBehaviour
 {
 
-   public static Clicker Instance;
-   Camera m_Camera;
-   public GameObject Bubblecontainer;
+    public static Clicker Instance;
+    Camera m_Camera;
+    public GameObject Bubblecontainer;
 
-   public GameObject Sprayer;
-   SpriteRenderer sprayerRenderer;
+    public GameObject Sprayer;
+    SpriteRenderer sprayerRenderer;
 
-   public static int mode = 0;
+    public static int mode = 0;
 
     bool sprayerCooldown = false;
 
     bool bigShotCooldown = false;
-    
+
     float bigShotRange = 4.0f;
     float sprayerRange = 1.0f;
 
@@ -37,16 +37,18 @@ public class Clicker : MonoBehaviour
     public GameObject bearAvailableIndicator;
 
     SpriteRenderer bearAvailableIndicatorSprite;
-    
+
     public Waffe waffe = Waffe.Normal;
 
-    public enum Waffe {
+    public enum Waffe
+    {
         Normal,
         Bear,
         Snake,
     }
 
-    void Start() {
+    void Start()
+    {
         Instance = this;
         waffe = Waffe.Normal;
         Debug.Log(waffe);
@@ -62,100 +64,118 @@ public class Clicker : MonoBehaviour
         PawRenderer = Paw.GetComponent<SpriteRenderer>();
     }
 
-   void Update()
-   {
+    void Update()
+    {
 
-    if(Input.GetKey("e") && sprayerAvailable) {
-        waffe = Waffe.Snake;
-                    sprayParticleSource.SetActive(true);
-        StartCoroutine(sprayDuration());
-    }
+        if (Input.GetKey("e") && sprayerAvailable)
+        {
+            waffe = Waffe.Snake;
+            sprayParticleSource.SetActive(true);
+            StartCoroutine(sprayDuration());
+        }
 
-    if(Input.GetKey("r") && bearAvailable) {
-        waffe = Waffe.Bear;
-        StartCoroutine(bearDuration());
-    }
+        if (Input.GetKey("r") && bearAvailable)
+        {
+            waffe = Waffe.Bear;
+            StartCoroutine(bearDuration());
+        }
 
 
 
-    Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    if(waffe == Waffe.Snake) {
-        sprayParticleSource.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
-        if(!sprayerCooldown) {
-            sprayerCooldown = true;
-            int childCount = Bubblecontainer.transform.childCount;
-            for(int i = 0; i < childCount; i++) {
-                Transform bubble = Bubblecontainer.transform.GetChild(i);
-                Vector3 bubblePosition = bubble.position;
-                float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
-                if(Distance2D <= sprayerRange && bubble.gameObject.activeSelf) {
-                    bubble.gameObject.GetComponent<BubbleSpawner>().onHit(i);
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (waffe == Waffe.Snake)
+        {
+            sprayParticleSource.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
+            if (!sprayerCooldown)
+            {
+                sprayerCooldown = true;
+                int childCount = Bubblecontainer.transform.childCount;
+                for (int i = 0; i < childCount; i++)
+                {
+                    Transform bubble = Bubblecontainer.transform.GetChild(i);
+                    Vector3 bubblePosition = bubble.position;
+                    float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
+                    if (Distance2D <= sprayerRange && bubble.gameObject.activeSelf)
+                    {
+                        Bubblecontainer.gameObject.GetComponent<BubbleSpawner>().onHit(i);
+                    }
                 }
-            }
-            StartCoroutine(setSprayerCooldown());
+                StartCoroutine(setSprayerCooldown());
 
-        } 
-    }
-    if(waffe == Waffe.Bear) {
-        
-            if(Mouse.current.leftButton.wasPressedThisFrame && !bigShotCooldown) {
+            }
+        }
+        if (waffe == Waffe.Bear)
+        {
+
+            if (Mouse.current.leftButton.wasPressedThisFrame && !bigShotCooldown)
+            {
                 int childCount = Bubblecontainer.transform.childCount;
                 Sprayer.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
                 Sprayer.transform.localScale = new Vector3(bigShotRange / 4, bigShotRange / 4, 1.0f);
                 sprayerRenderer.enabled = true;
                 bigShotCooldown = true;
-                for(int i = 0; i < childCount; i++) {
-                Transform bubble = Bubblecontainer.transform.GetChild(i);
-                Vector3 bubblePosition = bubble.position;
-                float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
-                if(Distance2D <= bigShotRange  && bubble.gameObject.activeSelf) {
-                    bubble.gameObject.GetComponent<BubbleScript>().onHit();
+                for (int i = 0; i < childCount; i++)
+                {
+                    Transform bubble = Bubblecontainer.transform.GetChild(i);
+                    Vector3 bubblePosition = bubble.position;
+                    float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
+                    if (Distance2D <= bigShotRange && bubble.gameObject.activeSelf)
+                    {
+                        bubble.gameObject.GetComponent<BubbleSpawner>().onHit(i);
+                    }
+                    StartCoroutine(pawDuration());
+                    StartCoroutine(setBigShotCooldown());
                 }
-                StartCoroutine(pawDuration());
-                StartCoroutine(setBigShotCooldown());
+
             }
-            
         }
-    }  
+    }
 
 
-
-    public void getUpgradeAvailable(Waffe waffe) {
-        if(waffe == Waffe.Bear) {
+    public void getUpgradeAvailable(Waffe waffe)
+    {
+        if (waffe == Waffe.Bear)
+        {
             bearAvailable = true;
             bearAvailableIndicatorSprite.enabled = true;
         }
-        if(waffe == Waffe.Snake) {
+        if (waffe == Waffe.Snake)
+        {
             sprayerAvailable = true;
             Debug.Log("snake unlockend");
             sprayAvailableIndicatorSprite.enabled = true;
         }
     }
 
-    IEnumerator setSprayerCooldown() {
-    yield return new WaitForSeconds(0.1f);
-    sprayerCooldown = false;
+    IEnumerator setSprayerCooldown()
+    {
+        yield return new WaitForSeconds(0.1f);
+        sprayerCooldown = false;
     }
 
-    IEnumerator setBigShotCooldown() {
+    IEnumerator setBigShotCooldown()
+    {
         yield return new WaitForSeconds(1.0f);
         bigShotCooldown = false;
 
     }
-    IEnumerator bearDuration() {
+    IEnumerator bearDuration()
+    {
         yield return new WaitForSeconds(5.0f);
         waffe = Waffe.Normal;
         bearAvailableIndicatorSprite.enabled = false;
-    } 
+    }
 
-    IEnumerator sprayDuration() {
+    IEnumerator sprayDuration()
+    {
         yield return new WaitForSeconds(5.0f);
         waffe = Waffe.Normal;
         sprayAvailableIndicatorSprite.enabled = false;
         sprayParticleSource.SetActive(false);
     }
 
-    IEnumerator pawDuration() {
+    IEnumerator pawDuration()
+    {
         PawRenderer.sprite = PawAnimation[0];
         yield return new WaitForSeconds(0.16f);
         PawRenderer.sprite = PawAnimation[1];
@@ -165,8 +185,8 @@ public class Clicker : MonoBehaviour
         Debug.Log("disable");
         sprayerRenderer.enabled = false;
 
-    }  
-   
+    }
+
 }
 
 

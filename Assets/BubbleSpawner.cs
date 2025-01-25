@@ -32,6 +32,7 @@ public class BubbleSpawner : MonoBehaviour
     public BoxCollider2D spawnArea;
     public BoxCollider2D dangerZone;
 
+    public MonoBehaviour bubbleScript;
     //TODO: per kind in template
     public float spawnsPerSecond = 3f;
     float spawnTimer;

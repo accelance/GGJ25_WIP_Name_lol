@@ -33,7 +33,6 @@ public class Bubbles : MonoBehaviour
 
         if(idleIndex % 16 == 0 && idle) {
             animationIndex = (animationIndex + 1) % 3;
-            Debug.Log(animationIndex);
             spriteRenderer.sprite = idleAnimation[animationIndex];
         }
         
@@ -46,7 +45,10 @@ public class Bubbles : MonoBehaviour
     }
 
     void OnMouseDown() {
+        Debug.Log(transform.GetSiblingIndex());
         if(Clicker.Instance.waffe == Clicker.Waffe.Normal) {
+            
+            transform.parent.gameObject.GetComponent<BubbleSpawner>().onHit(transform.GetSiblingIndex());
             onHit();
         }
     }

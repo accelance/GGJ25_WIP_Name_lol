@@ -57,7 +57,7 @@ public class Clicker : MonoBehaviour
                 Vector3 bubblePosition = bubble.position;
                 float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
                 if(Distance2D <= sprayerRange) {
-                    bubble.gameObject.GetComponent<BubbleScript>().onHit();
+                    Bubblecontainer.GetComponent<BubbleSpawner>().onHit(i);
                 }
             }
             StartCoroutine(setSprayerCooldown());
@@ -76,7 +76,7 @@ public class Clicker : MonoBehaviour
                 Vector3 bubblePosition = bubble.position;
                 float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
                 if(Distance2D <= bigShotRange) {
-                    bubble.gameObject.GetComponent<BubbleScript>().onHit();
+                    Bubblecontainer.GetComponent<BubbleSpawner>().onHit(i);
                 }
             }
             StartCoroutine(setBigShotCooldown());

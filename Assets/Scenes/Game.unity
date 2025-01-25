@@ -302,7 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5748a6ac18c15469cb4bc93dcf7983, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSpawnerIndex: 0
 --- !u!1 &266135220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,12 +1171,13 @@ MonoBehaviour:
     sizeVariance: 0.1
   - kind: 2
     maxHP: 1
-    averageSpeed: 2
+    averageSpeed: 4
     speedVariance: 0.4
     averageSize: 0.3
     sizeVariance: 0.05
   spawnArea: {fileID: 1226261655}
   dangerZone: {fileID: 1226261654}
+  baseKind: 1
   bubbleRules:
   - kind: 2
     count: 1
@@ -1409,6 +1409,7 @@ MonoBehaviour:
     sizeVariance: 0.05
   spawnArea: {fileID: 1944014158}
   dangerZone: {fileID: 1944014159}
+  baseKind: 0
   bubbleRules:
   - kind: 1
     count: 1

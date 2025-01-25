@@ -14,6 +14,7 @@ public class BubbleSpawner : MonoBehaviour
     public BoxCollider2D spawnArea;
     public BoxCollider2D dangerZone;
     [SerializeField]
+    public BubbleKind baseKind;
     public BubbleRule[] bubbleRules;
     public int ruleCursor;
 
@@ -186,21 +187,21 @@ public class BubbleSpawner : MonoBehaviour
 
     void spawn(Bubble it, Vector3 position, BubbleTemplate template)
     {
-        Debug.Log(template.kind);
         it.state = BubbleState.Alive;
 
         it.template = template;
 
-        it.p = position;
 
-        float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
         for(int octave = 0; octave < it.swayFactors.Length; octave++) {
             it.swayFactors[octave]   = Mathf.Pow(2, octave + Random.Range(-template.speedVariance, template.speedVariance));
             it.swayStrengths[octave] = 1 / it.swayFactors[octave];
         }
 
-        it.dp = new Vector3(0, 0.5f, 0);
-        it.ddp = new Vector3(0, 0.3f + speedOffset, 0);
+        float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
+        it.p = position;
+        it.dp = Vector3.zero;
+        it.ddp = new Vector3(0, it.template.averageSpeed + speedOffset, 0);
+
         it.o.transform.position = position;
 
         float scale = template.averageSize + Random.Range(-template.sizeVariance, template.sizeVariance);
@@ -209,7 +210,6 @@ public class BubbleSpawner : MonoBehaviour
         it.tscale = 0;
 
         it.hp = template.maxHP;
-
     }
 
     void despawn(Bubble it)

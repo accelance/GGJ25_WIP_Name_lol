@@ -15,7 +15,8 @@ public class BubbleSpawner : MonoBehaviour
         public Sprite sprite;
         public Color color;
 
-        public BubbleTemplate(BubbleKind kind, int maxHP, float averageSpeed, float speedVariance, float averageSize, float sizeVariance){
+        public BubbleTemplate(BubbleKind kind, int maxHP, float averageSpeed, float speedVariance, float averageSize, float sizeVariance)
+        {
             this.kind = kind;
             this.averageSpeed = averageSpeed;
             this.speedVariance = speedVariance;
@@ -25,14 +26,8 @@ public class BubbleSpawner : MonoBehaviour
         }
     }
 
-    
-
     [SerializeField]
-    public BubbleTemplate[] templates = new BubbleTemplate[] {
-        new(BubbleKind.Normal, 1, 2.0f, 0.2f, 2.0f, 0.2f),
-        new(BubbleKind.Mini,   1, 2.5f, 0.2f, 1.3f, 0.1f),
-        new(BubbleKind.Tank,   3, 1.0f, 0.4f, 3.5f, 0.5f),
-    };
+    public BubbleTemplate[] templates = new BubbleTemplate[3];
     public Bubble[] bubbles = new Bubble[64];
     public BoxCollider2D spawnArea;
     public BoxCollider2D dangerZone;
@@ -46,52 +41,63 @@ public class BubbleSpawner : MonoBehaviour
         spawnTimer = 1 / spawnsPerSecond;
         for (int i = 0; i < bubbles.Length; i++)
         {
-            var o = new GameObject();
+            var o = new GameObject("Bubble");
             o.transform.parent = this.transform;
             bubbles[i] = new Bubble(o);
         }
     }
 
-    public void onHit(int index) {
-        var b = bubbles[index];
-        if (b.hp > 0 && b.state != BubbleState.Invincible ){
-            b.hp -= 1;
-            if(b.hp == 0){
-                b.desiredScale = 0.1f;
-                b.state = BubbleState.Popped;
-            }else {
-                b.state = BubbleState.Invincible;
-                b.desiredScale = b.currentScale * 0.5f;
-                b.tinvicible = 0.4f; // TODO expose
+    public void onHit(int index)
+    {
+        var it = bubbles[index];
+        if (it.hp > 0 && it.state != BubbleState.Invincible)
+        {
+            it.hp -= 1;
+            if (it.hp == 0)
+            {
+                it.desiredScale = 0.1f;
+                it.state = BubbleState.Popped;
             }
+            else
+            {
+                it.state = BubbleState.Invincible;
+                it.desiredScale = it.currentScale * 0.5f;
+                it.tinvicible = 0.4f; // TODO expose
+
+                it.ddp = new Vector3(0, 0.5f, 0);
+            }
+            it.dp = new Vector3(Random.Range(-1f, 1f), Random.Range(-0.8f, 0.4f), 0);
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         spawnTimer -= Time.deltaTime;
 
         for (int i = 0; i < bubbles.Length; i++)
         {
-            var b = bubbles[i];
-            if (b == null){
-                int childCount = transform.childCount;
-                for(int count = 0; count < childCount; count++ ) {
-                    Destroy(transform.GetChild(0));
-                }
-                Start();
-            } else 
+            var it = bubbles[i];
+            if (it == null)
             {
-                if(b.tscale < 1) {
-                    b.tscale += Time.deltaTime;
-                    float scale = Mathf.Lerp(b.currentScale, b.desiredScale, b.tscale);
-                    b.o.transform.localScale = new Vector3(scale, scale, 0);
-                } else {
-                    b.currentScale = b.desiredScale;
-                    b.tscale = 0;
+                Start();
+            }
+            else
+            {
+                it.age += Time.deltaTime;
+
+                if (it.tscale < 1)
+                {
+                    it.tscale += Time.deltaTime;
+                    float scale = Mathf.Lerp(it.currentScale, it.desiredScale, it.tscale);
+                    it.o.transform.localScale = new Vector3(scale, scale, 0);
+                }
+                else
+                {
+                    it.currentScale = it.desiredScale;
+                    it.tscale = 0;
                 }
 
-                switch (b.state)
+                switch (it.state)
                 {
                     case BubbleState.None:
                         if (spawnTimer <= 0)
@@ -108,28 +114,42 @@ public class BubbleSpawner : MonoBehaviour
                         }
                         break;
                     case BubbleState.Alive:
-                        move(b);
-                        if (dangerZone.bounds.Contains(b.o.transform.position))
+                        move(it);
+                        if (dangerZone.bounds.Contains(it.o.transform.position))
                         {
                             // LoseBar.Instance.bubbleHit();
-                            despawn(b);
+                            despawn(it);
                         }
                         break;
                     case BubbleState.Invincible:
-                        move(b);
-                        b.tinvicible -= Time.deltaTime;
-                        if(b.tinvicible > 0) {
-                            float t = (Mathf.Sin(b.tinvicible*20f) + 1) *0.5f;
-                            t = t*t;
-                            b.currentColor = Color.Lerp(b.color, Color.white, t);
-                        } else {
-                            b.state = BubbleState.Alive;
-                            b.currentColor = b.color;
+                        move(it);
+                        it.tinvicible -= Time.deltaTime;
+                        if (it.tinvicible > 0)
+                        {
+                            float t = (Mathf.Sin(it.tinvicible * 20f) + 1) * 0.5f;
+                            t = t * t;
+                            it.currentColor = Color.Lerp(it.color, Color.white, t);
+                        }
+                        else
+                        {
+                            it.state = BubbleState.Alive;
+                            it.currentColor = it.color;
                         }
                         break;
                     case BubbleState.Popped:
-                        if(b.desiredScale == b.currentScale) {
-                            despawn(b);
+                        move(it);
+                        if (it.desiredScale == it.currentScale)
+                        {
+                            foreach(var other in bubbles) {
+                                var direction = other.p - it.p;
+                                var length = Mathf.Max(1f, direction.magnitude);
+                                direction *= 1/(length*length*length);
+
+                                Debug.DrawRay(other.p, direction, Color.yellow);
+                                other.dp += direction*0.2f;
+                                other.ddp -= direction*0.25f;
+                            }
+                            despawn(it);
                         }
                         break;
                     default:
@@ -140,7 +160,7 @@ public class BubbleSpawner : MonoBehaviour
         }
     }
 
-    
+
     void spawn(Bubble it, Vector3 position, BubbleTemplate template)
     {
         it.state = BubbleState.Alive;
@@ -151,34 +171,58 @@ public class BubbleSpawner : MonoBehaviour
 
         it.kind = template.kind;
 
+        it.p = position;
+
+        float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
+        for(int octave = 0; octave < it.swayFactors.Length; octave++) {
+            it.swayFactors[octave]   = Mathf.Pow(2, octave + Random.Range(-template.speedVariance, template.speedVariance));
+            it.swayStrengths[octave] = 1 / it.swayFactors[octave];
+        }
+
+        it.dp = new Vector3(0, 0.5f, 0);
+        it.ddp = new Vector3(0, 0.3f + speedOffset, 0);
         it.o.transform.position = position;
 
-        float scale = template.averageSize + Random.Range(-template.sizeVariance , template.sizeVariance);
+        float scale = template.averageSize + Random.Range(-template.sizeVariance, template.sizeVariance);
         it.currentScale = scale;
         it.desiredScale = scale;
         it.tscale = 0;
 
         it.hp = template.maxHP;
 
-        it.speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
     }
 
     void despawn(Bubble it)
     {
         it.state = BubbleState.None;
-        it.o.transform.position = new Vector3(0, -100, 0);
+        it.p = new Vector3(0, -100, 0);
+        it.dp = Vector3.zero;
+        it.ddp = Vector3.zero;
+
+        it.o.transform.position = it.p;
     }
 
-    BubbleTemplate getTemplate(BubbleKind kind) {
-        return  templates[(int) kind];
+    BubbleTemplate getTemplate(BubbleKind kind)
+    {
+        return templates[(int)kind];
     }
 
     void move(Bubble it)
     {
-        float speed = getTemplate(it.kind).averageSpeed;
-        speed += it.speedOffset;
+        float sway = 0;
+        for(int octave = 0; octave < it.swayFactors.Length; octave++) {
+            sway += Mathf.Sin(it.age * it.swayFactors[octave]) * it.swayStrengths[octave];
+        }
 
-        //TODO: swaying
-        it.o.transform.position = it.o.transform.position + new Vector3(0, speed * Time.deltaTime, 0);
+        float timeSquared = Time.deltaTime * Time.deltaTime;
+
+        it.ddp +=  it.ddp * -0.1f * Time.deltaTime;
+        it.dp  += it.ddp * 0.5f * timeSquared + it.ddp * Time.deltaTime;
+        it.dp  += new Vector3(sway * 0.2f, 0, 0) * Time.deltaTime;
+
+        it.p += it.ddp * 0.5f * timeSquared + it.dp * Time.deltaTime;
+        it.o.transform.position = it.p;
+        // var rb = it.o.GetComponent<Rigidbody2D>();
+        // rb.MovePosition(it.p);
     }
 }

@@ -232,7 +232,7 @@ Transform:
   m_GameObject: {fileID: 627019582}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.47, y: -7.4300003, z: 0}
+  m_LocalPosition: {x: 0, y: -7.92, z: 0}
   m_LocalScale: {x: 0.9454661, y: 0.9454661, z: 0.9454661}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -688,31 +688,31 @@ MonoBehaviour:
   templates:
   - kind: 0
     maxHP: 1
-    averageSpeed: 2
+    averageSpeed: 1
     speedVariance: 0.2
-    averageSize: 0.7
+    averageSize: 0.6
     sizeVariance: 0.1
     sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
     color: {r: 0.27358478, g: 1, b: 0.95090383, a: 1}
-  - kind: 2
-    maxHP: 1
-    averageSpeed: 2.5
-    speedVariance: 0.2
-    averageSize: 0.3
-    sizeVariance: 0.2
-    sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    color: {r: 0.8930817, g: 0.26118416, b: 0.7129871, a: 1}
   - kind: 1
     maxHP: 3
-    averageSpeed: 1
-    speedVariance: 0.4
-    averageSize: 2
+    averageSpeed: 0.5
+    speedVariance: 0.1
+    averageSize: 1
     sizeVariance: 0.1
     sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-    color: {r: 0.47533602, g: 0.04004973, b: 0.8490566, a: 1}
+    color: {r: 0.7010259, g: 0.26274505, b: 0.89411765, a: 1}
+  - kind: 2
+    maxHP: 1
+    averageSpeed: 2
+    speedVariance: 0.4
+    averageSize: 0.3
+    sizeVariance: 0.05
+    sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+    color: {r: 0.9433962, g: 0.33523193, b: 0.80353725, a: 1}
   spawnArea: {fileID: 1944014158}
   dangerZone: {fileID: 1944014159}
-  spawnsPerSecond: 10
+  spawnsPerSecond: 20
 --- !u!4 &1944014157
 Transform:
   m_ObjectHideFlags: 0
@@ -762,7 +762,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.13}
+  m_Offset: {x: 0, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -772,7 +772,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 10, y: 1}
+  m_Size: {x: 8, y: 1}
   m_EdgeRadius: 0
 --- !u!61 &1944014159
 BoxCollider2D:

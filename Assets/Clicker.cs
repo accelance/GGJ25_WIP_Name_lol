@@ -26,6 +26,8 @@ public class Clicker : MonoBehaviour
     bool bearAvailable = false;
 
     public GameObject sprayAvailableIndicator;
+
+    public GameObject sprayParticleSource;
     SpriteRenderer sprayAvailableIndicatorSprite;
 
     public GameObject bearAvailableIndicator;
@@ -52,6 +54,7 @@ public class Clicker : MonoBehaviour
         sprayerRenderer = Sprayer.GetComponent<SpriteRenderer>();
 
         sprayerRenderer.enabled = false;
+        sprayParticleSource.SetActive(false);
     }
 
    void Update()
@@ -59,6 +62,7 @@ public class Clicker : MonoBehaviour
 
     if(Input.GetKey("e") && sprayerAvailable) {
         waffe = Waffe.Snake;
+                    sprayParticleSource.SetActive(true);
         StartCoroutine(sprayDuration());
     }
 
@@ -71,6 +75,7 @@ public class Clicker : MonoBehaviour
 
     Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     if(waffe == Waffe.Snake) {
+        sprayParticleSource.transform.position = new Vector3(worldMousePosition.x, worldMousePosition.y, 0.0f);
         if(!sprayerCooldown) {
             sprayerCooldown = true;
             int childCount = Bubblecontainer.transform.childCount;
@@ -143,6 +148,7 @@ public class Clicker : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         waffe = Waffe.Normal;
         sprayAvailableIndicatorSprite.enabled = false;
+        sprayParticleSource.SetActive(false);
     }
 
     IEnumerator pawDuration() {

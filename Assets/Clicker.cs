@@ -9,6 +9,9 @@ public class Clicker : MonoBehaviour
     Camera m_Camera;
     public GameObject Bubblecontainer;
 
+    public GameObject Lehrling;
+    LehrlingAnimation lehrlingSkript;
+
     public GameObject Sprayer;
     SpriteRenderer sprayerRenderer;
 
@@ -40,6 +43,8 @@ public class Clicker : MonoBehaviour
 
     public Waffe waffe = Waffe.Normal;
 
+    bool fireAnimationCoolDown = false;
+
     public enum Waffe
     {
         Normal,
@@ -62,6 +67,7 @@ public class Clicker : MonoBehaviour
         sprayerRenderer.enabled = false;
         sprayParticleSource.SetActive(false);
         PawRenderer = Paw.GetComponent<SpriteRenderer>();
+        lehrlingSkript = Lehrling.GetComponent<LehrlingAnimation>();
     }
 
     void Update()
@@ -78,6 +84,11 @@ public class Clicker : MonoBehaviour
         {
             waffe = Waffe.Bear;
             StartCoroutine(bearDuration());
+        }
+
+        if(Mouse.current.leftButton.wasPressedThisFrame && (waffe == Waffe.Normal || waffe == Waffe.Bear) && !fireAnimationCoolDown) {
+            lehrlingSkript.Fire();
+            StartCoroutine(fireShotCooldown());
         }
 
 
@@ -159,6 +170,13 @@ public class Clicker : MonoBehaviour
         bigShotCooldown = false;
 
     }
+
+    IEnumerator fireShotCooldown()
+    {
+        yield return new WaitForSeconds(3.0f);
+        fireAnimationCoolDown = false;
+
+    }
     IEnumerator bearDuration()
     {
         yield return new WaitForSeconds(5.0f);
@@ -168,7 +186,7 @@ public class Clicker : MonoBehaviour
 
     IEnumerator sprayDuration()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(50.0f);
         waffe = Waffe.Normal;
         sprayAvailableIndicatorSprite.enabled = false;
         sprayParticleSource.SetActive(false);

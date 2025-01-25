@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class BubblePowerUpSnake : BubbleScript
+public class BubblePowerUp : Bubbles
 {
-    public void onHit() {
-        
+    public Clicker.Waffe waffe;
+    public override void onHit() {
+        idle = false;
+        StartCoroutine(popBubble());
+        Clicker.Instance.getUpgradeAvailable(waffe);
     }
 
 

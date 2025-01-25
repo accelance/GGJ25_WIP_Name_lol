@@ -15,8 +15,9 @@ public class BubbleScript : MonoBehaviour
         
     }
     void OnMouseDown() {
-
-        onHit();
+        if(Clicker.Instance.Waffe == Waffe.Normal) {
+            onHit();
+        }
     }
 
     public void onHit() {

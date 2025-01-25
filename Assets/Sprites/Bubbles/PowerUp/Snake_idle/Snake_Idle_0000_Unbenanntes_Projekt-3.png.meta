@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Snake_Idle_0000_Unbenanntes_Projekt-3_0: 5310448348019985909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

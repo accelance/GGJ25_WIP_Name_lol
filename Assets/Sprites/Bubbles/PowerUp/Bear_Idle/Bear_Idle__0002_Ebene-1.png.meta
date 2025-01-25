@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bear_Idle__0002_Ebene-1_0: 9018246961716995460
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Shield_0005_Ebene-1_0: -8427383923448331056
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

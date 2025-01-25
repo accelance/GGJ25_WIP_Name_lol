@@ -185,8 +185,6 @@ public class Clicker : MonoBehaviour
         Debug.Log("disable");
         sprayerRenderer.enabled = false;
 
-    }
-
+    }  
+   
 }
-
-

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Normal_pop__0003_Ebene-1_0: 6599960886976758232
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

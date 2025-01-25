@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Snake_Idle_0002_Ebene-1_0: -7474945033019011837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

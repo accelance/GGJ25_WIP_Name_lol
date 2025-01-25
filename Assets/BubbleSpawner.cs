@@ -3,16 +3,24 @@ using System.Collections;
 
 public class BubbleSpawner : MonoBehaviour
 {
+    
+    [SerializeField]
+    public Sprite[] idle  = new Sprite[3];
+    [SerializeField]
+    public Sprite[] death = new Sprite[5];
     [SerializeField]
     public BubbleTemplate[] templates = new BubbleTemplate[3];
     public Bubble[] bubbles = new Bubble[64];
     public BoxCollider2D spawnArea;
     public BoxCollider2D dangerZone;
+    [SerializeField]
+    public BubbleKind baseKind;
+    public BubbleRule[] bubbleRules;
+    public int ruleCursor;
+
 
     public Material material;
 
-    public MonoBehaviour bubbleScript;
-    //TODO: per kind in template
     public float spawnsPerSecond = 3f;
     float spawnTimer;
 
@@ -41,7 +49,7 @@ public class BubbleSpawner : MonoBehaviour
             }
             else
             {
-                it.sprite = it.template.death[0];
+                it.sprite = death[it.template.maxHP - it.hp];
 
                 it.state = BubbleState.Invincible;
                 it.desiredScale = it.currentScale * 0.5f;
@@ -73,11 +81,9 @@ public class BubbleSpawner : MonoBehaviour
                     if (it.idleIndex % 16 == 0)
                     {
                         it.animationIndex = (it.animationIndex + 1) % 3;
-                        it.sprite = it.template.idle[it.animationIndex];
+                        it.sprite = idle[it.animationIndex];
                     }
                 }
-
-
 
 
                 if (it.tscale < 1)
@@ -101,13 +107,27 @@ public class BubbleSpawner : MonoBehaviour
                         if (spawnTimer <= 0)
                         {
                             spawnTimer = 1 / spawnsPerSecond;
-                            // TODO: actual delays
+
                             Vector2 p = new(
                                 Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
                                 Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y)
                             );
 
-                            var kind = (BubbleKind)Random.Range(0, 3);
+                            var kind = BubbleKind.Normal;
+
+                            if (bubbleRules.Length > 0) {
+                                var everyXBubblesIsA = bubbleRules[ruleCursor];
+                                everyXBubblesIsA.index--;
+                                if (everyXBubblesIsA.index <= 0) {
+                                    everyXBubblesIsA.index = everyXBubblesIsA.count;
+                                    kind = everyXBubblesIsA.kind;
+                                    ruleCursor++;
+                                    if (ruleCursor>= bubbleRules.Length) {
+                                        ruleCursor = 0;
+                                    }
+                                }
+                            }
+                            
                             spawn(bubbles[i], p, getTemplate(kind));
                         }
                         break;
@@ -161,12 +181,11 @@ public class BubbleSpawner : MonoBehaviour
 
     public IEnumerator popBubble(Bubble it)
     {
-        var frames = it.template.death;
-        it.sprite = frames[frames.Length - 2];
+        it.sprite = death[death.Length - 2];
         yield return new WaitForSeconds(0.16f);
-        it.sprite = frames[frames.Length - 1];
+        it.sprite = death[death.Length - 1];
         yield return new WaitForSeconds(0.16f);
-        it.o.SetActive(false);
+        despawn(it);
     }
 
     void spawn(Bubble it, Vector3 position, BubbleTemplate template)
@@ -176,16 +195,16 @@ public class BubbleSpawner : MonoBehaviour
         it.template = template;
 
 
-        it.p = position;
-
-        float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
         for(int octave = 0; octave < it.swayFactors.Length; octave++) {
             it.swayFactors[octave]   = Mathf.Pow(2, octave + Random.Range(-template.speedVariance, template.speedVariance));
             it.swayStrengths[octave] = 1 / it.swayFactors[octave];
         }
 
-        it.dp = new Vector3(0, 0.5f, 0);
-        it.ddp = new Vector3(0, 0.3f + speedOffset, 0);
+        float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
+        it.p = position;
+        it.dp = Vector3.zero;
+        it.ddp = new Vector3(0, it.template.averageSpeed + speedOffset, 0);
+
         it.o.transform.position = position;
 
         float scale = template.averageSize + Random.Range(-template.sizeVariance, template.sizeVariance);
@@ -194,7 +213,6 @@ public class BubbleSpawner : MonoBehaviour
         it.tscale = 0;
 
         it.hp = template.maxHP;
-
     }
 
     void despawn(Bubble it)
@@ -227,6 +245,7 @@ public class BubbleSpawner : MonoBehaviour
 
         it.p += it.ddp * 0.5f * timeSquared + it.dp * Time.deltaTime;
         it.o.transform.position = it.p;
+        Debug.DrawRay(it.p, it.dp);
         // var rb = it.o.GetComponent<Rigidbody2D>();
         // rb.MovePosition(it.p);
     }

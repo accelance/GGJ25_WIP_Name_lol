@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class Bubbles : MonoBehaviour
 {
     void OnMouseDown()
@@ -11,12 +10,4 @@ public class Bubbles : MonoBehaviour
         {
         }
     }
-
-   
-
-
-
-
-
-
 }

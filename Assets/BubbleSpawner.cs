@@ -135,7 +135,7 @@ public class BubbleSpawner : MonoBehaviour
                                 Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y)
                             );
 
-                            var kind = BubbleKind.Normal;
+                            var kind = baseKind;
                             Clicker.Waffe bonus = Clicker.Waffe.Normal;
                             bool overwritten = false;
                             if (!overwritten && bonusBubbles.Length > 0) {

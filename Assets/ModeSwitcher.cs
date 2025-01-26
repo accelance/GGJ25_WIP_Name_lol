@@ -22,7 +22,7 @@ public class ModeSwitcher : MonoBehaviour
 
     public MusicPlayer musicPlayer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
         brodelMat.SetFloat("_HueShift", 0.0f);
         numberOfModes = transform.childCount;

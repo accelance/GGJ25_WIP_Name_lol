@@ -9,32 +9,24 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameIsPaused = !gameIsPaused;
-            if (gameIsPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                Continue();
-            }
+            togglePause();
         }
     }
 
     public void togglePause() {
-        gameIsPaused = !gameIsPaused;
-            if (gameIsPaused)
-            {
-                Pause();
-            }
-            else
-            {
-                Continue();
-            }
+        if (gameIsPaused)
+        {
+            Continue();
+        }
+        else
+        {
+            Pause();
+        }
     }
 
     public void Pause()
     {
+        gameIsPaused = true;
         PauseButton.SetActive(false);
         Time.timeScale = 0;
         PausePanel.SetActive(true);
@@ -42,6 +34,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Continue()
     {
+        gameIsPaused = false;
         PauseButton.SetActive(true);
         Time.timeScale = 1;
         PausePanel.SetActive(false);

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "GGJ25_WIP_Name_lol.sln"
+    "dotnet.defaultSolution": "My project.sln"
 }

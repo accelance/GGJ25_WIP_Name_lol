@@ -8,6 +8,8 @@ public class ModeSwitcher : MonoBehaviour
     int numberOfModes;
     bool switchCDv = false;
     public int[] timeIntervals = {5, 5, 5, 5};
+
+    public MusicPlayer musicPlayer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +41,7 @@ public class ModeSwitcher : MonoBehaviour
     }
 
     void switchMode(int i) {
+        musicPlayer.switchToMusic(i);
         for(int j = 0; j < numberOfModes; j++) {
             transform.GetChild(j).gameObject.SetActive(childIndex == j);
         }

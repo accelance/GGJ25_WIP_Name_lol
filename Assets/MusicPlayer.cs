@@ -19,6 +19,8 @@ public class MusicPlayer : MonoBehaviour
     public void switchToMusic(int index) {
         if(index < MusikTracks.Length) {
             player.resource = MusikTracks[index];
+                    player.Play();
+
         }
     }
 }

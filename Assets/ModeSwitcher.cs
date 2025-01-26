@@ -9,6 +9,12 @@ public class ModeSwitcher : MonoBehaviour
     bool switchCDv = false;
     public int[] timeIntervals = {5, 5, 5, 5};
 
+    public GameObject Chili;
+    public GameObject Eis;
+
+
+    public LehrlingAnimation hex;
+
     public Clicker clicker;
 
     public MusicPlayer musicPlayer;
@@ -28,9 +34,21 @@ public class ModeSwitcher : MonoBehaviour
 
     IEnumerator automaticSwitch() {
         while(true) {
-            yield return new WaitForSeconds(timeIntervals[childIndex]);
+            yield return new WaitForSeconds(timeIntervals[childIndex] - 3.5f);
+            
             int randomLevel = (int) Random.Range(1, timeIntervals.Length);
             childIndex = childIndex != 0 ? 0 : randomLevel;
+            if(childIndex == 1) {
+                hex.Fire();
+                Chili.GetComponent<throwItem>().Fire();
+            }
+            if(childIndex == 2) {
+                hex.Fire();
+                Eis.GetComponent<throwItem>().Fire();
+            }
+
+            yield return new WaitForSeconds(3.5f);
+            
             switchMode(childIndex);
         }
     }
@@ -43,6 +61,7 @@ public class ModeSwitcher : MonoBehaviour
 
     void switchMode(int i) {
         musicPlayer.switchToMusic(i);
+        
         for(int j = 0; j < numberOfModes; j++) {
             transform.GetChild(j).gameObject.SetActive(childIndex == j);
             if(j == i) {

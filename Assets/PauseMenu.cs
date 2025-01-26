@@ -21,9 +21,21 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void togglePause() {
+        gameIsPaused = !gameIsPaused;
+            if (gameIsPaused)
+            {
+                Pause();
+            }
+            else
+            {
+                Continue();
+            }
+    }
+
     public void Pause()
     {
-        PauseButton.SetActive(false);
+        //PauseButton.SetActive(false);
         Time.timeScale = 0;
         PausePanel.SetActive(true);
     }

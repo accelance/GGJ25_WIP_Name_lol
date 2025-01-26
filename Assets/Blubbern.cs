@@ -15,7 +15,7 @@ public class Blubbern : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         index = (index + 1) % 48;
 

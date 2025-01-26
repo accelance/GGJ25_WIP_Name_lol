@@ -25,16 +25,13 @@ public class LoseBar : MonoBehaviour
         vfx = VFXPlayer.Instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void bubbleHit() {
         currentlyHitBubbles++;
         image.fillAmount = (float) currentlyHitBubbles / (float) maxBubbles;
         if(!gameOver) {
             vfx.playVFX(2);
+        if(currentlyHitBubbles >= maxBubbles) {
+             SceneManager.LoadScene("UI");
         }
         if(currentlyHitBubbles >= maxBubbles && !gameOver) {
             gameOver = true;

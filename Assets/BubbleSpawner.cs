@@ -21,15 +21,29 @@ public class BubbleSpawner : MonoBehaviour
     int bonusRuleCursor;
     public VFXPlayer vfx;
 
+    int phaseCount;
+    public float phaseAccelerationModifier;
+    public float phaseSpawnrateModifier;
 
     public Material material;
 
     public float spawnsPerSecond = 3f;
     float spawnTimer;
 
+    void OnEnable() {
+        phaseCount++;
+        
+        spawnTimer = 1 / (spawnsPerSecond + phaseCount * phaseSpawnrateModifier);
+        foreach(var it in bubbles) {
+            if(it != null) {
+                despawn(it);
+            }
+        }
+    }
+
     void Start()
     {
-        spawnTimer = 1 / spawnsPerSecond;
+        spawnTimer = 1 / (spawnsPerSecond + phaseCount * phaseSpawnrateModifier);
         for (int i = 0; i < bubbles.Length; i++)
         {
             var o = new GameObject("Bubble");
@@ -139,7 +153,7 @@ public class BubbleSpawner : MonoBehaviour
                     case BubbleState.None:
                         if (spawnTimer <= 0)
                         {
-                            spawnTimer = 1 / spawnsPerSecond;
+                            spawnTimer = 1 / (spawnsPerSecond + phaseCount * phaseSpawnrateModifier);
 
                             Vector2 p = new(
                                 Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x),
@@ -214,7 +228,7 @@ public class BubbleSpawner : MonoBehaviour
                                 var length = Mathf.Max(1f, direction.magnitude);
                                 direction *= 1/(length*length*length);
 
-                                Debug.DrawRay(other.p, direction, Color.yellow);
+                                // Debug.DrawRay(other.p, direction, Color.yellow);
                                 other.dp += direction*0.2f;
                                 other.ddp -= direction*0.25f;
                             }
@@ -255,7 +269,7 @@ public class BubbleSpawner : MonoBehaviour
         float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
         it.p = position;
         it.dp = new Vector3(0, it.template.averageSpeed + speedOffset, 0);
-        it.ddp = new Vector3(0, it.template.accelaration, 0);
+        it.ddp = new Vector3(0, it.template.accelaration + phaseCount * phaseAccelerationModifier, 0);
 
         it.o.transform.position = position;
 
@@ -296,7 +310,7 @@ public class BubbleSpawner : MonoBehaviour
 
         it.p += it.ddp * 0.5f * timeSquared + it.dp * Time.deltaTime;
         it.o.transform.position = it.p;
-        Debug.DrawRay(it.p, it.dp);
+        // Debug.DrawRay(it.p, it.dp);
         // var rb = it.o.GetComponent<Rigidbody2D>();
         // rb.MovePosition(it.p);
     }

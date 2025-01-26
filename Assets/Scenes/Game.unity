@@ -438,6 +438,7 @@ Transform:
   m_Children:
   - {fileID: 1944014157}
   - {fileID: 904657443}
+  - {fileID: 836681433}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &82781724
@@ -452,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a94355f00f198f6e83047aa130702e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeIntervals: 05000000050000000500000005000000
+  timeIntervals: 050000000500000005000000
   clicker: {fileID: 1380093458}
   musicPlayer: {fileID: 989005917}
 --- !u!1 &126366818
@@ -1570,6 +1571,206 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &836681432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 836681433}
+  - component: {fileID: 836681436}
+  - component: {fileID: 836681435}
+  - component: {fileID: 836681434}
+  m_Layer: 0
+  m_Name: BubbleSpawner Tank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &836681433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836681432}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4.58, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 82781723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &836681434
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836681432}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 9.66}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 24.68, y: 1}
+  m_EdgeRadius: 0
+--- !u!61 &836681435
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836681432}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 8, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &836681436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836681432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f40405774da3254c808ea628d917340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bear:
+  - {fileID: 3149102394866211087, guid: 462467f4803dd7db5ab84007471b3789, type: 3}
+  - {fileID: -3462138677413528807, guid: c75abe56a5fdd563791225268f4cfa76, type: 3}
+  - {fileID: 9018246961716995460, guid: 43d475f5b8ee82780ab37847c49b61d6, type: 3}
+  snake:
+  - {fileID: 5310448348019985909, guid: f75c15e32a7742af48a44f8e825b1f20, type: 3}
+  - {fileID: 8614230299262054854, guid: 432fb32b6ba1b7b67b9d5912850724ea, type: 3}
+  - {fileID: -7474945033019011837, guid: 6fd9583ca9188907f96bf4ffe59d2324, type: 3}
+  idle:
+  - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
+  - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
+  - {fileID: 21300000, guid: 18c0b060b3d086ff8a4f7aba4e793fc8, type: 3}
+  death:
+  - {fileID: 21300000, guid: 2cb12e9739a5b99a19c74cce0cc23db9, type: 3}
+  - {fileID: 21300000, guid: b44d938ba87b51d7899e252d4ed0f0f0, type: 3}
+  - {fileID: 21300000, guid: 174f8331b5543cfd981f46888ce367c6, type: 3}
+  - {fileID: 21300000, guid: 5e74da539ccc15245b7fb48056005fc4, type: 3}
+  - {fileID: 21300000, guid: 9ea64878f9eff78859bcc0c2514aad19, type: 3}
+  templates:
+  - kind: 0
+    maxHP: 1
+    averageSpeed: 1
+    speedVariance: 0.2
+    accelaration: 0
+    averageSize: 0.5
+    sizeVariance: 0.1
+  - kind: 1
+    maxHP: 3
+    averageSpeed: 0.5
+    speedVariance: 0.1
+    accelaration: 0
+    averageSize: 1.2
+    sizeVariance: 0.1
+  - kind: 2
+    maxHP: 1
+    averageSpeed: 2
+    speedVariance: 0.4
+    accelaration: 0
+    averageSize: 0.3
+    sizeVariance: 0.05
+  spawnArea: {fileID: 836681435}
+  dangerZone: {fileID: 836681434}
+  baseKind: 0
+  bubbleRules:
+  - kind: 0
+    bonus: 0
+    count: 0
+    index: 0
+  bonusBubbles:
+  - kind: 0
+    bonus: 1
+    count: 3
+    index: 0
+  - kind: 0
+    bonus: 2
+    count: 3
+    index: 0
+  vfx: {fileID: 1810389308}
+  phaseAccelerationModifier: 0
+  phaseSpawnrateModifier: 2
+  material: {fileID: 2100000, guid: 51ecf68272288342c8d2a13ac0abaef3, type: 2}
+  spawnsPerSecond: 2
 --- !u!1 &868112738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2294,7 @@ GameObject:
   - component: {fileID: 904657445}
   - component: {fileID: 904657444}
   m_Layer: 0
-  m_Name: BubbleSpawner Tank (3)
+  m_Name: BubbleSpawner Mini
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2276,6 +2477,8 @@ MonoBehaviour:
     count: 3
     index: 0
   vfx: {fileID: 1810389308}
+  phaseAccelerationModifier: 2
+  phaseSpawnrateModifier: 2
   material: {fileID: 2100000, guid: c95f01168d8a3265cbcce4a04a1e6195, type: 2}
   spawnsPerSecond: 8
 --- !u!1 &989005915
@@ -4189,7 +4392,7 @@ GameObject:
   - component: {fileID: 1944014158}
   - component: {fileID: 1944014159}
   m_Layer: 0
-  m_Name: BubbleSpawner Tank
+  m_Name: BubbleSpawner Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4265,6 +4468,8 @@ MonoBehaviour:
     count: 3
     index: 0
   vfx: {fileID: 1810389308}
+  phaseAccelerationModifier: 0
+  phaseSpawnrateModifier: 2
   material: {fileID: 2100000, guid: 51ecf68272288342c8d2a13ac0abaef3, type: 2}
   spawnsPerSecond: 2
 --- !u!4 &1944014157

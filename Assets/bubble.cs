@@ -69,7 +69,8 @@ public class Bubble
     public Bubble(GameObject o, Material material)
     {
         List<Material> l = new List<Material>();
-        l.Add(material);
+        // make a copy
+        l.Add(new Material(material));
         this.o = o;
         SpriteRenderer sr = o.AddComponent<SpriteRenderer>();
         sr.SetMaterials(l);

@@ -138,20 +138,6 @@ public class BubbleSpawner : MonoBehaviour
                             var kind = BubbleKind.Normal;
                             Clicker.Waffe bonus = Clicker.Waffe.Normal;
                             bool overwritten = false;
-                            if (bubbleRules.Length > 0) {
-                                var everyXBubblesIsA = bubbleRules[ruleCursor];
-                                everyXBubblesIsA.index--;
-                                if (everyXBubblesIsA.index <= 0) {
-                                    everyXBubblesIsA.index = everyXBubblesIsA.count;
-                                    kind = everyXBubblesIsA.kind;
-                                    overwritten = true;
-                                    ruleCursor++;
-                                    if (ruleCursor>= bubbleRules.Length) {
-                                        ruleCursor = 0;
-                                    }
-                                }
-                            }
-
                             if (!overwritten && bonusBubbles.Length > 0) {
                                 var everyXBubblesIsA = bonusBubbles[bonusRuleCursor];
                                 everyXBubblesIsA.index--;
@@ -167,6 +153,20 @@ public class BubbleSpawner : MonoBehaviour
                                 }
                             }
                             
+                            if (bubbleRules.Length > 0) {
+                                var everyXBubblesIsA = bubbleRules[ruleCursor];
+                                everyXBubblesIsA.index--;
+                                if (everyXBubblesIsA.index <= 0) {
+                                    everyXBubblesIsA.index = everyXBubblesIsA.count;
+                                    kind = everyXBubblesIsA.kind;
+                                    overwritten = true;
+                                    ruleCursor++;
+                                    if (ruleCursor>= bubbleRules.Length) {
+                                        ruleCursor = 0;
+                                    }
+                                }
+                            }
+                            
                             spawn(bubbles[i], p, getTemplate(kind), bonus);
                         }
                         break;
@@ -174,7 +174,7 @@ public class BubbleSpawner : MonoBehaviour
                         move(it);
                         if (dangerZone.bounds.Contains(it.o.transform.position))
                         {
-                            LoseBar.Instance.bubbleHit();
+                            // LoseBar.Instance.bubbleHit();
                             despawn(it);
                         }
                         break;

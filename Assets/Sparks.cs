@@ -22,7 +22,6 @@ public class Sparks : MonoBehaviour
         if((index % speed) == 0 && Frames != null) {
             frameIndex++;
             frameIndex = (frameIndex) % Frames.Length;
-            Debug.Log(frameIndex);
             sr.sprite = Frames[frameIndex];
         }
     }

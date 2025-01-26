@@ -21,7 +21,7 @@ public class Blubbern : MonoBehaviour
 
         if((index % 7) == 0 && texturen != null) {
             frameIndex++;
-            frameIndex = (frameIndex) % 3;
+            frameIndex = (frameIndex) % texturen.Length;
             sr.sharedMaterial.SetTexture("_Texture2D", texturen[frameIndex]);
         }
     }

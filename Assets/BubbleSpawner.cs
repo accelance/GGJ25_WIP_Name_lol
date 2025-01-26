@@ -19,6 +19,7 @@ public class BubbleSpawner : MonoBehaviour
     public BubbleRule[] bonusBubbles;
     int ruleCursor;
     int bonusRuleCursor;
+    public VFXPlayer vfx;
 
 
     public Material material;
@@ -43,6 +44,16 @@ public class BubbleSpawner : MonoBehaviour
         if (it.hp > 0 && it.state != BubbleState.Invincible)
         {
             it.hp -= 1;
+
+            switch(it.hp) {
+                case 0: vfx.playVFX(9); break;
+
+                case 1: vfx.playVFX(8); break;
+
+                case 2: vfx.playVFX(7); break;
+            }
+
+
             if (it.hp == 0)
             {
                 StartCoroutine(popBubble(it));

@@ -71,7 +71,6 @@ public class Clicker : MonoBehaviour
         PawRenderer = Paw.GetComponent<SpriteRenderer>();
         lehrlingSkript = Lehrling.GetComponent<LehrlingAnimation>();
 
-        vfx = VFXPlayer.Instance;
     }
 
     void Update()
@@ -196,7 +195,7 @@ public class Clicker : MonoBehaviour
 
     IEnumerator sprayDuration()
     {
-        yield return new WaitForSeconds(50.0f);
+        yield return new WaitForSeconds(5.0f);
         waffe = Waffe.Normal;
         sprayAvailableIndicatorSprite.enabled = false;
         sprayParticleSource.SetActive(false);

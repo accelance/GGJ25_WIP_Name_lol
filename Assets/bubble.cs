@@ -60,6 +60,7 @@ public class Bubble
             _sprite = value;
             var sr = o.GetComponent<SpriteRenderer>();
             sr.sprite = value;
+            sr.sharedMaterial.SetTexture("_Texture2D", textureFromSprite(value));
             var collider = o.GetComponent<CircleCollider2D>();
             collider.radius = sr.sprite.bounds.extents.x;
         }
@@ -77,4 +78,20 @@ public class Bubble
         // var rb = o.AddComponent<Rigidbody2D>();
         // rb.gravityScale = 0;
     }
+
+    // Stole from: https://discussions.unity.com/t/convert-sprite-image-to-texture/97618/2
+    public static Texture2D textureFromSprite(Sprite sprite)
+	{
+		if(sprite.rect.width != sprite.texture.width){
+			Texture2D newText = new Texture2D((int)sprite.rect.width,(int)sprite.rect.height);
+			Color[] newColors = sprite.texture.GetPixels((int)sprite.textureRect.x, 
+			                                             (int)sprite.textureRect.y, 
+			                                             (int)sprite.textureRect.width, 
+			                                             (int)sprite.textureRect.height );
+			newText.SetPixels(newColors);
+			newText.Apply();
+			return newText;
+		} else
+			return sprite.texture;
+	}
 }

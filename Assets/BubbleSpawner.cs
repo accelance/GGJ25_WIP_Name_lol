@@ -4,11 +4,9 @@ using System.Collections;
 public class BubbleSpawner : MonoBehaviour
 {
     
-    [SerializeField]
     public Sprite[] bear  = new Sprite[3];
     public Sprite[] snake  = new Sprite[3];
     public Sprite[] idle  = new Sprite[3];
-    [SerializeField]
     public Sprite[] death = new Sprite[5];
     [SerializeField]
     public BubbleTemplate[] templates = new BubbleTemplate[3];
@@ -94,7 +92,6 @@ public class BubbleSpawner : MonoBehaviour
                     it.idleIndex++;
                     if (it.idleIndex % 16 == 0)
                     {
-                        // TODO: fix this
                         it.animationIndex = (it.animationIndex+1) % 3;
                         switch(it.bonus) {
                             case Clicker.Waffe.Normal:

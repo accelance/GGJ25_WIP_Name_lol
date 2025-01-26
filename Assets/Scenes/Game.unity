@@ -1133,7 +1133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1226261653
 Transform:
   m_ObjectHideFlags: 0
@@ -1253,6 +1253,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f40405774da3254c808ea628d917340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bear:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  snake:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   idle:
   - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
   - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
@@ -1287,9 +1295,11 @@ MonoBehaviour:
   baseKind: 1
   bubbleRules:
   - kind: 2
+    bonus: 0
     count: 1
     index: 0
-  ruleCursor: 0
+  bonusBubbles: []
+  material: {fileID: 0}
   spawnsPerSecond: 2
 --- !u!1 &1380093457
 GameObject:
@@ -1804,6 +1814,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f40405774da3254c808ea628d917340, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bear:
+  - {fileID: 3149102394866211087, guid: 462467f4803dd7db5ab84007471b3789, type: 3}
+  - {fileID: -3462138677413528807, guid: c75abe56a5fdd563791225268f4cfa76, type: 3}
+  - {fileID: 9018246961716995460, guid: 43d475f5b8ee82780ab37847c49b61d6, type: 3}
+  snake:
+  - {fileID: 5310448348019985909, guid: f75c15e32a7742af48a44f8e825b1f20, type: 3}
+  - {fileID: 8614230299262054854, guid: 432fb32b6ba1b7b67b9d5912850724ea, type: 3}
+  - {fileID: -7474945033019011837, guid: 6fd9583ca9188907f96bf4ffe59d2324, type: 3}
   idle:
   - {fileID: 21300000, guid: fc29ab37469b25a15b69f6659c948ddf, type: 3}
   - {fileID: 21300000, guid: 750935a50eb9545d38565bffdfdec10c, type: 3}
@@ -1835,13 +1853,22 @@ MonoBehaviour:
     sizeVariance: 0.05
   spawnArea: {fileID: 1944014158}
   dangerZone: {fileID: 1944014159}
-  material: {fileID: 2100000, guid: 51ecf68272288342c8d2a13ac0abaef3, type: 2}
   baseKind: 0
   bubbleRules:
-  - kind: 1
-    count: 1
+  - kind: 0
+    bonus: 0
+    count: 0
     index: 0
-  ruleCursor: 0
+  bonusBubbles:
+  - kind: 0
+    bonus: 1
+    count: 3
+    index: 0
+  - kind: 0
+    bonus: 2
+    count: 3
+    index: 0
+  material: {fileID: 2100000, guid: 51ecf68272288342c8d2a13ac0abaef3, type: 2}
   spawnsPerSecond: 2
 --- !u!4 &1944014157
 Transform:
@@ -2135,3 +2162,4 @@ SceneRoots:
   - {fileID: 1004787069}
   - {fileID: 1840804942}
   - {fileID: 1805482482}
+  - {fileID: 25477849}

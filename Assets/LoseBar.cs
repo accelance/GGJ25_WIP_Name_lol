@@ -19,16 +19,11 @@ public class LoseBar : MonoBehaviour
         Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void bubbleHit() {
         currentlyHitBubbles++;
         image.fillAmount = (float) currentlyHitBubbles / (float) maxBubbles;
         if(currentlyHitBubbles >= maxBubbles) {
-             SceneManager.LoadScene(3);
+             SceneManager.LoadScene("UI");
         }
     }
 }

@@ -41,17 +41,16 @@ public class LehrlingAnimation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(idle) {
             index = (index + 1) % 48;
 
-        if((index % speed) == 0 && Frames != null) {
-            frameIndex++;
-            frameIndex = (frameIndex) % Frames.Length;
-            Debug.Log(frameIndex);
-            sr.sprite = Frames[frameIndex];
-        }
+            if((index % speed) == 0 && Frames != null) {
+                frameIndex++;
+                frameIndex = (frameIndex) % Frames.Length;
+                sr.sprite = Frames[frameIndex];
+            }
         }
         
     }

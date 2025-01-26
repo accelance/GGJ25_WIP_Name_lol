@@ -4,9 +4,9 @@ using System.Collections;
 public class BubbleSpawner : MonoBehaviour
 {
     
-    [SerializeField]
+    public Sprite[] bear  = new Sprite[3];
+    public Sprite[] snake  = new Sprite[3];
     public Sprite[] idle  = new Sprite[3];
-    [SerializeField]
     public Sprite[] death = new Sprite[5];
     [SerializeField]
     public BubbleTemplate[] templates = new BubbleTemplate[3];
@@ -16,7 +16,9 @@ public class BubbleSpawner : MonoBehaviour
     [SerializeField]
     public BubbleKind baseKind;
     public BubbleRule[] bubbleRules;
-    public int ruleCursor;
+    public BubbleRule[] bonusBubbles;
+    int ruleCursor;
+    int bonusRuleCursor;
 
 
     public Material material;
@@ -46,6 +48,16 @@ public class BubbleSpawner : MonoBehaviour
                 StartCoroutine(popBubble(it));
                 it.desiredScale = 0.1f;
                 it.state = BubbleState.Popped;
+
+                switch(it.bonus) {
+                    case Clicker.Waffe.Normal:
+                        break;
+                    case Clicker.Waffe.Bear:
+                    case Clicker.Waffe.Snake:
+                        Clicker.Instance.getUpgradeAvailable(it.bonus);
+                        break;
+                    
+                }
             }
             else
             {
@@ -80,8 +92,18 @@ public class BubbleSpawner : MonoBehaviour
                     it.idleIndex++;
                     if (it.idleIndex % 16 == 0)
                     {
-                        it.animationIndex = (it.animationIndex + 1) % 3;
-                        it.sprite = idle[it.animationIndex];
+                        it.animationIndex = (it.animationIndex+1) % 3;
+                        switch(it.bonus) {
+                            case Clicker.Waffe.Normal:
+                                it.sprite = idle[it.animationIndex];
+                                break;
+                            case Clicker.Waffe.Bear:
+                                it.sprite = bear[it.animationIndex];
+                                break;
+                            case Clicker.Waffe.Snake:
+                                it.sprite = snake[it.animationIndex];
+                                break;
+                        }
                     }
                 }
 
@@ -113,14 +135,31 @@ public class BubbleSpawner : MonoBehaviour
                                 Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y)
                             );
 
-                            var kind = BubbleKind.Normal;
-
+                            var kind = baseKind;
+                            Clicker.Waffe bonus = Clicker.Waffe.Normal;
+                            bool overwritten = false;
+                            if (!overwritten && bonusBubbles.Length > 0) {
+                                var everyXBubblesIsA = bonusBubbles[bonusRuleCursor];
+                                everyXBubblesIsA.index--;
+                                if (everyXBubblesIsA.index <= 0) {
+                                    everyXBubblesIsA.index = everyXBubblesIsA.count;
+                                    kind = everyXBubblesIsA.kind;
+                                    bonus = everyXBubblesIsA.bonus;
+                                    overwritten = true;
+                                    bonusRuleCursor++;
+                                    if (bonusRuleCursor>= bonusBubbles.Length) {
+                                        bonusRuleCursor = 0;
+                                    }
+                                }
+                            }
+                            
                             if (bubbleRules.Length > 0) {
                                 var everyXBubblesIsA = bubbleRules[ruleCursor];
                                 everyXBubblesIsA.index--;
                                 if (everyXBubblesIsA.index <= 0) {
                                     everyXBubblesIsA.index = everyXBubblesIsA.count;
                                     kind = everyXBubblesIsA.kind;
+                                    overwritten = true;
                                     ruleCursor++;
                                     if (ruleCursor>= bubbleRules.Length) {
                                         ruleCursor = 0;
@@ -128,14 +167,14 @@ public class BubbleSpawner : MonoBehaviour
                                 }
                             }
                             
-                            spawn(bubbles[i], p, getTemplate(kind));
+                            spawn(bubbles[i], p, getTemplate(kind), bonus);
                         }
                         break;
                     case BubbleState.Alive:
                         move(it);
                         if (dangerZone.bounds.Contains(it.o.transform.position))
                         {
-                            LoseBar.Instance.bubbleHit();
+                            // LoseBar.Instance.bubbleHit();
                             despawn(it);
                         }
                         break;
@@ -188,11 +227,13 @@ public class BubbleSpawner : MonoBehaviour
         despawn(it);
     }
 
-    void spawn(Bubble it, Vector3 position, BubbleTemplate template)
+    void spawn(Bubble it, Vector3 position, BubbleTemplate template, Clicker.Waffe bonus)
     {
         it.state = BubbleState.Alive;
 
         it.template = template;
+
+        it.bonus = bonus;
 
 
         for(int octave = 0; octave < it.swayFactors.Length; octave++) {
@@ -202,8 +243,8 @@ public class BubbleSpawner : MonoBehaviour
 
         float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
         it.p = position;
-        it.dp = Vector3.zero;
-        it.ddp = new Vector3(0, it.template.averageSpeed + speedOffset, 0);
+        it.dp = new Vector3(0, it.template.averageSpeed + speedOffset, 0);
+        it.ddp = new Vector3(0, it.template.accelaration, 0);
 
         it.o.transform.position = position;
 
@@ -239,9 +280,8 @@ public class BubbleSpawner : MonoBehaviour
 
         float timeSquared = Time.deltaTime * Time.deltaTime;
 
-        it.ddp +=  it.ddp * -0.1f * Time.deltaTime;
-        it.dp  += it.ddp * 0.5f * timeSquared + it.ddp * Time.deltaTime;
-        it.dp  += new Vector3(sway * 0.2f, 0, 0) * Time.deltaTime;
+        it.ddp += it.ddp * -0.05f * Time.deltaTime;
+        it.dp  += it.ddp * Time.deltaTime + new Vector3(sway * 0.2f, 0, 0) * Time.deltaTime;
 
         it.p += it.ddp * 0.5f * timeSquared + it.dp * Time.deltaTime;
         it.o.transform.position = it.p;

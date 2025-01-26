@@ -7,15 +7,7 @@ public class BubbleTemplate
     public int maxHP;
     public float averageSpeed;
     public float speedVariance;
+    public float accelaration;
     public float averageSize;
     public float sizeVariance;
-    public BubbleTemplate(BubbleKind kind, int maxHP, float averageSpeed, float speedVariance, float averageSize, float sizeVariance)
-    {
-        this.kind = kind;
-        this.averageSpeed = averageSpeed;
-        this.speedVariance = speedVariance;
-        this.averageSize = averageSize;
-        this.sizeVariance = sizeVariance;
-        this.maxHP = maxHP;
-    }
 }

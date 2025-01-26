@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hueShiftMaterial
+  m_Name: Brodeln
   m_Shader: {fileID: -6465566751694194690, guid: 9a44a341067c93fdba343e8d4d368729, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -80,7 +80,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _HueShift: 0
+    - _HueShift: 80
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ZWrite: 0

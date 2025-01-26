@@ -12,7 +12,7 @@ public class LoseBar : MonoBehaviour
 
     Image image;
 
-    int maxBubbles = 20;
+    public int maxBubbles = 20;
     int currentlyHitBubbles = 0;
 
     bool gameOver = false;

@@ -168,7 +168,7 @@ public class BubbleSpawner : MonoBehaviour
                                 everyXBubblesIsA.index--;
                                 if (everyXBubblesIsA.index <= 0) {
                                     everyXBubblesIsA.index = everyXBubblesIsA.count;
-                                    kind = everyXBubblesIsA.kind;
+                                    kind = BubbleKind.Normal;
                                     bonus = everyXBubblesIsA.bonus;
                                     overwritten = true;
                                     bonusRuleCursor++;
@@ -199,7 +199,7 @@ public class BubbleSpawner : MonoBehaviour
                         move(it);
                         if (dangerZone.bounds.Contains(it.o.transform.position))
                         {
-                            // LoseBar.Instance.bubbleHit();
+                             LoseBar.Instance.bubbleHit();
                             despawn(it);
                         }
                         break;

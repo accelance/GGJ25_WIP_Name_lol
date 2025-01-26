@@ -9,6 +9,9 @@ public class ModeSwitcher : MonoBehaviour
     bool switchCDv = false;
     public int[] timeIntervals = {5, 5, 5, 5};
 
+    public Material brodelMat;
+
+    public GameObject backgrounds;
     public GameObject Chili;
     public GameObject Eis;
 
@@ -25,12 +28,6 @@ public class ModeSwitcher : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(automaticSwitch());
     }
-    /* void Update() {
-        if(Input.GetKey("g") && !switchCDv)  {
-            switchMode(childIndex + 1);
-            StartCoroutine(switchCD());
-        }
-    } */
 
     IEnumerator automaticSwitch() {
         while(true) {
@@ -41,6 +38,7 @@ public class ModeSwitcher : MonoBehaviour
             if(childIndex == 1) {
                 hex.Fire();
                 Chili.GetComponent<throwItem>().Fire();
+
             }
             if(childIndex == 2) {
                 hex.Fire();
@@ -61,9 +59,15 @@ public class ModeSwitcher : MonoBehaviour
 
     void switchMode(int i) {
         musicPlayer.switchToMusic(i);
-        
+        switch(i) {
+            case 0: brodelMat.SetFloat("_HueShift", 0.0f); break;
+            case 1: brodelMat.SetFloat("_HueShift", 240.0f); break;
+            case 2: brodelMat.SetFloat("_HueShift", 80.0f); break;
+        }
         for(int j = 0; j < numberOfModes; j++) {
             transform.GetChild(j).gameObject.SetActive(childIndex == j);
+            backgrounds.transform.GetChild(j).gameObject.SetActive(childIndex == j);
+
             if(j == i) {
                 clicker.Bubblecontainer = transform.GetChild(j).gameObject;
             }

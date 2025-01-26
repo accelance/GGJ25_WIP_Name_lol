@@ -112,7 +112,7 @@ public class Clicker : MonoBehaviour
                     Transform bubble = Bubblecontainer.transform.GetChild(i);
                     Vector3 bubblePosition = bubble.position;
                     float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
-                    if (Distance2D <= sprayerRange && bubble.gameObject.activeSelf)
+                    if (Distance2D <= sprayerRange &&  Bubblecontainer.gameObject.activeSelf)
                     {
                         Bubblecontainer.gameObject.GetComponent<BubbleSpawner>().onHit(i);
                     }
@@ -139,7 +139,7 @@ public class Clicker : MonoBehaviour
                     Transform bubble = Bubblecontainer.transform.GetChild(i);
                     Vector3 bubblePosition = bubble.position;
                     float Distance2D = (new Vector2(bubblePosition.x, bubblePosition.y) - new Vector2(worldMousePosition.x, worldMousePosition.y)).magnitude;
-                    if (Distance2D <= bigShotRange && bubble.gameObject.activeSelf)
+                    if (Distance2D <= bigShotRange && bubble.gameObject.activeSelf && Bubblecontainer.gameObject.activeSelf)
                     {
                         bubble.gameObject.transform.parent.GetComponent<BubbleSpawner>().onHit(i);
                     }

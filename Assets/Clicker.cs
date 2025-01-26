@@ -76,7 +76,7 @@ public class Clicker : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey("e") /* && sprayerAvailable */)
+        if (Input.GetKey("e")  && sprayerAvailable )
         {
             waffe = Waffe.Snake;
             sprayParticleSource.SetActive(true);
@@ -85,7 +85,7 @@ public class Clicker : MonoBehaviour
             StartCoroutine(sprayDuration());
         }
 
-        if (Input.GetKey("r") /* && bearAvailable */)
+        if (Input.GetKey("r")  && bearAvailable )
         {
             waffe = Waffe.Bear;
             vfx.playVFX(0);

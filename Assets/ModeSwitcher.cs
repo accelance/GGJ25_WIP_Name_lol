@@ -9,6 +9,8 @@ public class ModeSwitcher : MonoBehaviour
     bool switchCDv = false;
     public int[] timeIntervals = {5, 5, 5, 5};
 
+    public Clicker clicker;
+
     public MusicPlayer musicPlayer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,6 +46,9 @@ public class ModeSwitcher : MonoBehaviour
         musicPlayer.switchToMusic(i);
         for(int j = 0; j < numberOfModes; j++) {
             transform.GetChild(j).gameObject.SetActive(childIndex == j);
+            if(j == i) {
+                clicker.Bubblecontainer = transform.GetChild(j).gameObject;
+            }
         }
     }
 

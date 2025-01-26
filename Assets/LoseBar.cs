@@ -30,17 +30,16 @@ public class LoseBar : MonoBehaviour
         image.fillAmount = (float) currentlyHitBubbles / (float) maxBubbles;
         if(!gameOver) {
             vfx.playVFX(2);
-        if(currentlyHitBubbles >= maxBubbles) {
-             SceneManager.LoadScene("UI");
-        }
         if(currentlyHitBubbles >= maxBubbles && !gameOver) {
             gameOver = true;
             StartCoroutine(endGame());
         }
+        }
     }
+
     IEnumerator endGame() {
         vfx.playVFX(3);
         yield return new WaitForSeconds(5.0f);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("UI");
     }
 }

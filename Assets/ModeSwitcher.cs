@@ -19,19 +19,18 @@ public class ModeSwitcher : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(automaticSwitch());
     }
-    /*void Update() {
+    /* void Update() {
         if(Input.GetKey("g") && !switchCDv)  {
             switchMode(childIndex + 1);
             StartCoroutine(switchCD());
         }
-    }*/
+    } */
 
     IEnumerator automaticSwitch() {
         while(true) {
             yield return new WaitForSeconds(timeIntervals[childIndex]);
-            int randomLevel = (int) Random.Range(1, 3);
+            int randomLevel = (int) Random.Range(1, timeIntervals.Length);
             childIndex = childIndex != 0 ? 0 : randomLevel;
-            Debug.Log("switched to mode: " + randomLevel);
             switchMode(childIndex);
         }
     }

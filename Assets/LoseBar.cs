@@ -2,11 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Video;
 
 public class LoseBar : MonoBehaviour
 {
 
     public static LoseBar Instance;
+
+    public VideoPlayer video;
 
     public VFXPlayer vfx;
 
@@ -40,6 +43,10 @@ public class LoseBar : MonoBehaviour
     IEnumerator endGame() {
         vfx.playVFX(3);
         yield return new WaitForSeconds(5.0f);
+        video.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;
+        video.Play();
+        yield return new WaitForSeconds(3.0f);
+        video.renderMode = UnityEngine.Video.VideoRenderMode.CameraFarPlane;
         SceneManager.LoadScene("UI");
     }
 }

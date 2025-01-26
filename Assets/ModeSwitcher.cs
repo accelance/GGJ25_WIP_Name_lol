@@ -24,6 +24,7 @@ public class ModeSwitcher : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        brodelMat.SetFloat("_HueShift", 0.0f);
         numberOfModes = transform.childCount;
         transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(automaticSwitch());

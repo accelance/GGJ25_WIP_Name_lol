@@ -243,8 +243,8 @@ public class BubbleSpawner : MonoBehaviour
 
         float speedOffset = Random.Range(-template.speedVariance, template.speedVariance);
         it.p = position;
-        it.dp = Vector3.zero;
-        it.ddp = new Vector3(0, it.template.averageSpeed + speedOffset, 0);
+        it.dp = new Vector3(0, it.template.averageSpeed + speedOffset, 0);
+        it.ddp = new Vector3(0, it.template.accelaration, 0);
 
         it.o.transform.position = position;
 
@@ -280,9 +280,8 @@ public class BubbleSpawner : MonoBehaviour
 
         float timeSquared = Time.deltaTime * Time.deltaTime;
 
-        it.ddp +=  it.ddp * -0.1f * Time.deltaTime;
-        it.dp  += it.ddp * 0.5f * timeSquared + it.ddp * Time.deltaTime;
-        it.dp  += new Vector3(sway * 0.2f, 0, 0) * Time.deltaTime;
+        it.ddp += it.ddp * -0.05f * Time.deltaTime;
+        it.dp  += it.ddp * Time.deltaTime + new Vector3(sway * 0.2f, 0, 0) * Time.deltaTime;
 
         it.p += it.ddp * 0.5f * timeSquared + it.dp * Time.deltaTime;
         it.o.transform.position = it.p;

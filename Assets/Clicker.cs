@@ -45,6 +45,8 @@ public class Clicker : MonoBehaviour
 
     bool fireAnimationCoolDown = false;
 
+    public VFXPlayer vfx;
+
     public enum Waffe
     {
         Normal,
@@ -68,21 +70,25 @@ public class Clicker : MonoBehaviour
         sprayParticleSource.SetActive(false);
         PawRenderer = Paw.GetComponent<SpriteRenderer>();
         lehrlingSkript = Lehrling.GetComponent<LehrlingAnimation>();
+
     }
 
     void Update()
     {
 
-        if (Input.GetKey("e") /* && sprayerAvailable */)
+        if (Input.GetKey("e")  && sprayerAvailable )
         {
             waffe = Waffe.Snake;
             sprayParticleSource.SetActive(true);
+            vfx.playVFX(5);
+            vfx.playVFXpassive(6);
             StartCoroutine(sprayDuration());
         }
 
-        if (Input.GetKey("r") /* && bearAvailable */)
+        if (Input.GetKey("r")  && bearAvailable )
         {
             waffe = Waffe.Bear;
+            vfx.playVFX(0);
             StartCoroutine(bearDuration());
         }
 
@@ -125,6 +131,9 @@ public class Clicker : MonoBehaviour
                 Paw.transform.localScale = new Vector3(bigShotRange / 4, bigShotRange / 4, 1.0f);
                 PawRenderer.enabled = true;
                 bigShotCooldown = true;
+                vfx.playVFX(1);
+                StartCoroutine(pawDuration());
+                StartCoroutine(setBigShotCooldown());
                 for (int i = 0; i < childCount; i++)
                 {
                     Transform bubble = Bubblecontainer.transform.GetChild(i);
@@ -134,9 +143,9 @@ public class Clicker : MonoBehaviour
                     {
                         bubble.gameObject.transform.parent.GetComponent<BubbleSpawner>().onHit(i);
                     }
-                    StartCoroutine(pawDuration());
-                    StartCoroutine(setBigShotCooldown());
+                    
                 }
+                
 
             }
         }
@@ -186,7 +195,7 @@ public class Clicker : MonoBehaviour
 
     IEnumerator sprayDuration()
     {
-        yield return new WaitForSeconds(50.0f);
+        yield return new WaitForSeconds(5.0f);
         waffe = Waffe.Normal;
         sprayAvailableIndicatorSprite.enabled = false;
         sprayParticleSource.SetActive(false);

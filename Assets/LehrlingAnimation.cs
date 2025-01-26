@@ -46,11 +46,13 @@ public class LehrlingAnimation : MonoBehaviour
         if(idle) {
             index = (index + 1) % 48;
 
-            if((index % speed) == 0 && Frames != null) {
-                frameIndex++;
-                frameIndex = (frameIndex) % Frames.Length;
-                sr.sprite = Frames[frameIndex];
-            }
+        if((index % speed) == 0 && Frames != null) {
+            frameIndex++;
+            frameIndex = (frameIndex) % Frames.Length;
+            sr.sprite = Frames[frameIndex];
+        }
+
+
         }
         
     }
